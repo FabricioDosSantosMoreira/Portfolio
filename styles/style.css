@@ -31,28 +31,37 @@ html, body {
 }
 
 .apresentacao {
-    padding: 8% 10%;
+    padding: 10%;
+    padding-left: 8%;
+    
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    gap: 82px;
 }    
 
+.apresentacao__imagem {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+}
 
 .apresentacao__conteudo {
-    width: 50%;
+    width: 55%;
     display: flex;
     flex-direction: column;
     gap: 35px;
 }
 
 .apresentacao__conteudo__titulo {
-    font-size: 36px;
+    font-size: 2.1rem;
     font-family: var(--fonte-principal);
 }
 
 .apresentacao__conteudo__descricao {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-family: var(--fonte-secundaria);
     font-weight: 400;
 }
@@ -67,7 +76,7 @@ html, body {
 }
 
 .apresentacao__conteudo__links__subtitulo {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-family: var(--fonte-principal);
     font-weight: 400;
 }
@@ -79,16 +88,15 @@ html, body {
 
     gap: 16px;
 
-
     color: var(--cor-terciaria);
 
     text-align: center;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-family: var(--fonte-secundaria);
     font-weight: 600;
 
-    width: 378px;
+    width: 50%;
 
     border: 2px solid var(--cor-secundaria);
     border-radius: 12px;
@@ -105,7 +113,7 @@ html, body {
     justify-content: space-between;
     align-items: center;
 
-    padding: 2% 0% 0% 10%;
+    padding: 2% 0% 0% 8%;
 }
 
 .header__nav {
@@ -115,7 +123,7 @@ html, body {
 
 .header__nav__item {
     font-family: var(--fonte-secundaria);
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 600;
 
     color: var(--cor-secundaria);
@@ -129,8 +137,33 @@ html, body {
     padding: 24px;
     text-align: center;
     font-family: var(--fonte-secundaria);
-    font-size: 24px;
+    font-size: 1rem;
     font-weight: 500;
 
     margin-top: auto;
+}
+
+
+@media (max-width: 1000px) {
+    .apresentacao {
+        flex-direction: column-reverse;
+        padding: 8% 8%;
+    }
+
+    .apresentacao__conteudo {
+        width: auto;
+    }
+
+    .header {
+        padding: 8% 5%;
+        width: 100%;
+    }
+
+    .header__nav {
+        justify-content: center;
+    }
+
+    .footer {
+        width: 100%;
+    }
 }
