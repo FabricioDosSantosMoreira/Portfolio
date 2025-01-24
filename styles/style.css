@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --cor-primaria: #211951;
+    --cor-secundaria: #15F5BA;
+    --cor-terciaria: #F0F3FF;
+    --cor-hover: #1a1346;
+
+    --fonte-principal: 'Krona One', sans-serif;
+    --fonte-secundaria: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    box-sizing: border-box;
+    background-color: var(--cor-primaria);
+    color: var(--cor-terciaria);
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-destaque {
+    color: #15F5BA;
+}
+
+.apresentacao {
+    padding: 8% 10%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}    
+
+
+.apresentacao__conteudo {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.apresentacao__conteudo__titulo {
+    font-size: 36px;
+    font-family: var(--fonte-principal);
+}
+
+.apresentacao__conteudo__descricao {
+    font-size: 24px;
+    font-family: var(--fonte-secundaria);
+    font-weight: 400;
+}
+
+.apresentacao__conteudo__links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 32px;
+}
+
+.apresentacao__conteudo__links__subtitulo {
+    font-size: 24px;
+    font-family: var(--fonte-principal);
+    font-weight: 400;
+}
+
+.apresentacao__conteudo__links__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+
+
+    color: var(--cor-terciaria);
+
+    text-align: center;
+    text-decoration: none;
+    font-size: 24px;
+    font-family: var(--fonte-secundaria);
+    font-weight: 600;
+
+    width: 378px;
+
+    border: 2px solid var(--cor-secundaria);
+    border-radius: 12px;
+
+    padding: 16px;
+}
+
+.apresentacao__conteudo__links__link:hover {
+    background-color: var(--cor-hover);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 2% 0% 0% 10%;
+}
+
+.header__nav {
+    display: flex;
+    gap: 32px;
+}
+
+.header__nav__item {
+    font-family: var(--fonte-secundaria);
+    font-size: 24px;
+    font-weight: 600;
+
+    color: var(--cor-secundaria);
+
+    text-decoration: none;
+}
+
+.footer {
+    color: var(--cor-primaria);
+    background-color: var(--cor-secundaria);
+    padding: 24px;
+    text-align: center;
+    font-family: var(--fonte-secundaria);
+    font-size: 24px;
+    font-weight: 500;
+
+    margin-top: auto;
+}
