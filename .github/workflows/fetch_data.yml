@@ -20,6 +20,7 @@ jobs:
           # Defina a lista de repositórios no formato "owner/repo"
           REPOS=(
             "FabricioDosSantosMoreira/react-web-calculator"
+            "FabricioDosSantosMoreira/DIO.me"
           )
 
           # Inicia um arquivo JSON vazio
