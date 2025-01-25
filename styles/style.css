@@ -14,10 +14,11 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html, body {
-    box-sizing: border-box;
+    
     background-color: var(--cor-primaria);
     color: var(--cor-terciaria);
 
