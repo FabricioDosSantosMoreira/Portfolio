@@ -10,38 +10,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-    - name: Set up Git
-      run: |
-        git config --local user.name "github-actions[bot]"
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git remote set-url origin https://<PUSH_TOKEN>@github.com/${{ github.repository }}.git
-      env:
-        PUSH_TOKEN: ${{ secrets.PUSH_TO_PORTFOLIO }}
+      - name: Fetch Data from GitHub API
+        env:
+          READ_TOKEN: ${{ secrets.READ_ACCESS_TOKEN }}
+        run: |
+          # Defina a lista de repositórios no formato "owner/repo"
+          REPOS=(
+            "FabricioDosSantosMoreira/react-web-calculator"
+          )
 
-    - name: Fetch data and update JSON
-      run: |
-        echo "[" > repo_data.json
-        for REPO in "${REPOS[@]}"; do
-          OWNER=$(echo "$REPO" | cut -d '/' -f 1)
-          NAME=$(echo "$REPO" | cut -d '/' -f 2)
-          echo "Buscando dados de $REPO..."
-          RESPONSE=$(curl -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d "{\"query\": \"{ repository(owner: \\\"$OWNER\\\", name: \\\"$NAME\\\") { name owner { login } openGraphImageUrl } }\"}" \
-            https://api.github.com/graphql)
-          echo "$RESPONSE" | jq '.data.repository' >> repo_data.json
-          echo "," >> repo_data.json
-        done
-        sed -i '$ s/,$//' repo_data.json
-        echo "]" >> repo_data.json
+          # Inicia um arquivo JSON vazio
+          echo "[" > repo_data.json
 
-    - name: Commit and push changes
-      run: |
-        git add repo_data.json
-        git commit -m "[UPDATE] - Fetch Data"
-        git push
-      env:
-        PUSH_TOKEN: ${{ secrets.PUSH_TO_PORTFOLIO }}
+          # Itera sobre os repositórios e busca dados
+          for REPO in "${REPOS[@]}"; do
+            OWNER=$(echo "$REPO" | cut -d '/' -f 1)
+            NAME=$(echo "$REPO" | cut -d '/' -f 2)
+
+            echo "Buscando dados de $REPO..."
+
+            RESPONSE=$(curl -X POST -H "Authorization: Bearer $READ_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d "{\"query\": \"{ repository(owner: \\\"$OWNER\\\", name: \\\"$NAME\\\") { name owner { login } openGraphImageUrl } }\"}" \
+              https://api.github.com/graphql)
+
+            # Adiciona os dados ao arquivo JSON
+            echo "$RESPONSE" | jq '.data.repository' >> repo_data.json
+            echo "," >> repo_data.json # Adiciona uma vírgula para separar os objetos
+          done
+
+          # Remove a última vírgula e fecha o array JSON
+          sed -i '$ s/,$//' repo_data.json
+          echo "]" >> repo_data.json
+
+      - name: Commit and Push Data
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add repo_data.json
+          git commit -m "Atualiza dados dos repositórios"
+          git push
