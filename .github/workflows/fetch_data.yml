@@ -24,7 +24,9 @@ jobs:
           )
 
           # Inicia um arquivo JSON vazio
-          rm repo_data.json
+          if [ -f repo_data.json ]; then
+            rm repo_data.json
+          fi
           echo "[" > repo_data.json
 
           # Itera sobre os repositórios e busca dados
