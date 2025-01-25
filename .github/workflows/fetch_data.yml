@@ -57,7 +57,7 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/FabricioDosSantosMoreira/Portfolio.git
+          git remote set-url origin https://${{ secrets.PUSH_TO_PORTFOLIO }}@github.com/FabricioDosSantosMoreira/Portfolio.git
           git add repo_data.json
           git commit -m "[UPDATE] - Fetch Data"
           git push
