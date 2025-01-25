@@ -19,7 +19,7 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git remote set-url origin https://<PUSH_TOKEN>@github.com/${{ github.repository }}.git
       env:
-        PUSH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUSH_TOKEN: ${{ secrets.PUSH_TO_PORTFOLIO }}
 
     - name: Fetch data and update JSON
       run: |
@@ -44,4 +44,4 @@ jobs:
         git commit -m "[UPDATE] - Fetch Data"
         git push
       env:
-        PUSH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUSH_TOKEN: ${{ secrets.PUSH_TO_PORTFOLIO }}
