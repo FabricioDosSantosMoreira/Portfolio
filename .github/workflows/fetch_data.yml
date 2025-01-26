@@ -60,8 +60,7 @@ jobs:
 
       - name: Commit and Push Data
         run: |
-          _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M")
-
           git add data.json
-          git commit -m "[UPDATE] - data.json ($_date)"
+          _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M") && git commit -m "[UPDATE] - data.json ($_date)"
           git push
+          
