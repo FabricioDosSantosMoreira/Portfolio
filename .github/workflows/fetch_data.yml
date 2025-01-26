@@ -1,4 +1,4 @@
-name: Fetch and Save Repository Data
+name: Fetch and Save GitHub Repository Data
 
 on:
   push:
@@ -10,23 +10,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      - name: Check Out Repository
         uses: actions/checkout@v3
-
-      - name: Fetch Data from GitHub API
+      
+      - name: Set Up Git
         env:
-          READ_TOKEN: ${{ secrets.READ_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Defina a lista de repositórios no formato "owner/repo"
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Remove Old Data
+        run: |
+          rm data.json
+      
+      - name: Fetch Data Using GitHub API
+        run: |
+          # 'REPOS' must be on the format 'OWNER/REPOSITORY'
           REPOS=(
             "FabricioDosSantosMoreira/react-web-calculator"
             "FabricioDosSantosMoreira/DIO.me"
           )
 
           # Inicia um arquivo JSON vazio
-          rm repo_data.json
-          ls
-          echo "[" > repo_data.json
+          echo "[" > data.json
 
           # Itera sobre os repositórios e busca dados
           for REPO in "${REPOS[@]}"; do
@@ -41,20 +48,16 @@ jobs:
               https://api.github.com/graphql)
 
             # Adiciona os dados ao arquivo JSON
-            echo "$RESPONSE" | jq '.data.repository' >> repo_data.json
-            echo "," >> repo_data.json # Adiciona uma vírgula para separar os objetos
+            echo "$RESPONSE" | jq '.data.repository' >> data.json
+            echo "," >> data.json # Adiciona uma vírgula para separar os objetos
           done
 
           # Remove a última vírgula e fecha o array JSON
-          sed -i '$ s/,$//' repo_data.json
-          echo "]" >> repo_data.json
+          sed -i '$ s/,$//' data.json
+          echo "]" >> data.json
 
       - name: Commit and Push Data
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git add repo_data.json
-          git commit -m "Atualiza dados dos repositórios"
+          git add data.json
+          git commit -m "[UPDATE] - data.json"
           git push
