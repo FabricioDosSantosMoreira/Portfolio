@@ -24,11 +24,11 @@ jobs:
         run: |
           rm -f data.json
           
-          git status
+          _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M") 
+
           git add .
           git commit -m "[REMOVE] - data.json ($_date)"
-          git status
-          
+
       - name: Fetch Data Using GitHub API
         env:
           READ_ACCESS_TOKEN: ${{ secrets.READ_ACCESS_TOKEN }}
@@ -67,9 +67,7 @@ jobs:
         run: |
           _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M")
           
-          git status
           git add .
           git commit -m "[UPDATE] - data.json ($_date)"
 
-          git status
           git push
