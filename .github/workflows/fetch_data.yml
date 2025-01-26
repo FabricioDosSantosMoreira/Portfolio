@@ -64,6 +64,9 @@ jobs:
             # Adds a ',' to 'data.json' to separate objects
             echo "," >> data.json
           done
+          
+          # Removes the last ','
+          sed -i '$ s/,$//' data.json
 
           # Closes 'data.json' with a ']'
           echo "]" >> data.json
