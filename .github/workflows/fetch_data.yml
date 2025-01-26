@@ -20,9 +20,13 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
       
-      - name: Remove Old Data
+      - name: Remove Old Data And Commit
         run: |
           rm -f data.json
+
+          git commit -m "[REMOVE] - data.json ($_date)"
+          git status
+          git add .
       
       - name: Fetch Data Using GitHub API
         env:
@@ -60,7 +64,10 @@ jobs:
 
       - name: Commit and Push Data
         run: |
-          git add data.json
-          _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M") && git commit -m "[UPDATE] - data.json ($_date)"
-          git push
+          _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M")
           
+          git status
+
+          git add .
+          git commit -m "[UPDATE] - data.json ($_date)"
+          git push
