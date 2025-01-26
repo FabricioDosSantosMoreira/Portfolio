@@ -62,8 +62,7 @@ jobs:
           done
 
           # Remove a última vírgula, remove a linha em branco e fecha o array JSON
-          sed -i -e '$ s/,$//' -e '$ s/\n//g' data.json
-
+          sed -i -e '$ s/,$//' -e '$ s/\n\n//g' data.json
 
           echo "]" >> data.json
 
