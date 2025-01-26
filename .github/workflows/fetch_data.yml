@@ -22,7 +22,7 @@ jobs:
       
       - name: Remove Old Data
         run: |
-          rm data.json
+          rm -f data.json
       
       - name: Fetch Data Using GitHub API
         run: |
