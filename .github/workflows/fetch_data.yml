@@ -34,21 +34,20 @@ jobs:
         env:
           READ_ACCESS_TOKEN: ${{ secrets.READ_ACCESS_TOKEN }}
         run: |
-          # 'REPOS' must be on the format 'OWNER/REPOSITORY'
           REPOS=(
-            "FabricioDosSantosMoreira/react-web-calculator"
-            "FabricioDosSantosMoreira/DIO.me"
+            react-web-calculator"
+            DIO.me"
           )
+          OWNER="FabricioDosSantosMoreira"
 
           # Open a new json
           echo "[" > data.json
 
           # Itera sobre os repositórios e busca dados
           for REPO in "${REPOS[@]}"; do
-            OWNER=$(echo "$REPO" | cut -d '/' -f 1)
-            NAME=$(echo "$REPO" | cut -d '/' -f 2)
+            OWNER=$(echo "$REPO")
 
-            echo "Buscando dados de $REPO..."
+            echo "\nFetching Data | $REPO..."
 
             RESPONSE=$(curl -X POST -H "Authorization: Bearer $READ_ACCESS_TOKEN" \
               -H "Content-Type: application/json" \
