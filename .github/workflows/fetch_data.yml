@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: '10 * * * *' # '0 0 * * 0'
 
 jobs:
   fetch-data:
