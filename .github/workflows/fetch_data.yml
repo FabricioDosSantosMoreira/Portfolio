@@ -40,10 +40,10 @@ jobs:
             "FabricioDosSantosMoreira/DIO.me"
           )
 
-          # Open a new json
+          # Open 'data.json' with a '['
           echo "[" > data.json
 
-          # Itera sobre os repositórios e busca dados
+          # Iterate over 'REPOS' to search data
           for REPO in "${REPOS[@]}"; do
             OWNER=$(echo "$REPO" | cut -d '/' -f 1)
             NAME=$(echo "$REPO" | cut -d '/' -f 2)
@@ -56,15 +56,16 @@ jobs:
               https://api.github.com/graphql
             )
 
-            # Adiciona os dados ao arquivo JSON
+            echo "Data Fetched | $RESPONSE"
+
+            # Adds 'RESPONSE' to 'data.json'
             echo "$RESPONSE" | jq '.data.repository' >> data.json
-            echo "," >> data.json # Adiciona uma vírgula para separar os objetos
+            
+            # Adds a ',' to 'data.json' to separate objects
+            echo "," >> data.json
           done
 
-          # Remove a última vírgula, remove a linha em branco e fecha o array JSON
-          #sed -i -e '$ s/,$//' data.json
-          #sed -i -e '$ s/\n$//' data.json
-
+          # Closes 'data.json' with a ']'
           echo "]" >> data.json
 
       - name: Commit and Push Data
