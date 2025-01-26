@@ -36,14 +36,14 @@ jobs:
         run: |
           # 'REPOS' must be on the format 'OWNER/REPOSITORY'
           REPOS=(
-            "FabricioDosSantosMoreira/react-web-calculator",
-            "FabricioDosSantosMoreira/DIO.me",
-            "FabricioDosSantosMoreira/PlanetsVsGalaxiesClassifier",
-            "FabricioDosSantosMoreira/LeetCode-Solutions",
-            "FabricioDosSantosMoreira/TicTacToe",
-            "FabricioDosSantosMoreira/SENAI-projeto-django",
-            "FabricioDosSantosMoreira/XPe-Python-Bootcamp",
-            "FabricioDosSantosMoreira/PyQT5-Basic-Examples",
+            "FabricioDosSantosMoreira/react-web-calculator"
+            "FabricioDosSantosMoreira/DIO.me"
+            "FabricioDosSantosMoreira/PlanetsVsGalaxiesClassifier"
+            "FabricioDosSantosMoreira/LeetCode-Solutions"
+            "FabricioDosSantosMoreira/TicTacToe"
+            "FabricioDosSantosMoreira/SENAI-projeto-django"
+            "FabricioDosSantosMoreira/XPe-Python-Bootcamp"
+            "FabricioDosSantosMoreira/PyQT5-Basic-Examples"
           )
 
           # Open 'data.json' with a '['
