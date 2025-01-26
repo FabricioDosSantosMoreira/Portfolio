@@ -48,12 +48,13 @@ jobs:
             OWNER=$(echo "$REPO" | cut -d '/' -f 1)
             NAME=$(echo "$REPO" | cut -d '/' -f 2)
 
-            echo "\nFetching Data | $REPO"
+            echo "Fetching Data | $REPO"
 
             RESPONSE=$(curl -X POST -H "Authorization: Bearer $READ_ACCESS_TOKEN" \
               -H "Content-Type: application/json" \
-              -d "{\"query\": \"{ repository(owner: \\\"$OWNER\\\", name: \\\"$NAME\\\") { name owner { login } openGraphImageUrl } }\"}" \
-              https://api.github.com/graphql)
+              -d "{\"query\": \"{ repository(owner: \\\"$OWNER\\\", name: \\\"$NAME\\\") { name openGraphImageUrl } }\"}" \
+              https://api.github.com/graphql
+            )
 
             # Adiciona os dados ao arquivo JSON
             echo "$RESPONSE" | jq '.data.repository' >> data.json
