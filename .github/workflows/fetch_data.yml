@@ -61,8 +61,10 @@ jobs:
             echo "," >> data.json # Adiciona uma vírgula para separar os objetos
           done
 
-          # Remove a última vírgula e fecha o array JSON
-          sed -i '$ s/,$//' data.json
+          # Remove a última vírgula, remove a linha em branco e fecha o array JSON
+          sed -i -e '$ s/,$//' -e '$ s/\n//g' data.json
+
+
           echo "]" >> data.json
 
       - name: Commit and Push Data
