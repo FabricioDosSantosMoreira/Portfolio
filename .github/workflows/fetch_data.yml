@@ -67,7 +67,7 @@ jobs:
             echo "Data Fetched | $RESPONSE"
 
             # Adds 'RESPONSE' to 'repo_data.json'
-            echo "$RESPONSE" | jq ".repo_data.repository" >> "./data/repo_data.json"
+            echo "$RESPONSE" | jq ".data.repository" >> "./data/repo_data.json"
             
             # Adds a ',' to 'repo_data.json' to separate objects
             echo "," >> "./data/repo_data.json"
