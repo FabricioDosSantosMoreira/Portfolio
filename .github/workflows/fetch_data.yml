@@ -79,11 +79,28 @@ jobs:
           # Closes 'data.json' with a ']'
           echo "]" >> data.json
 
+      - name: Fetch And Commit Color Data Using CURL
+        env:
+          READ_ACCESS_TOKEN: ${{ secrets.READ_ACCESS_TOKEN }}
+        run: |
+          echo "Downloading GitHub Colors JSON..."
+          
+          # -f, --fail, Fail silently (no output at all) on HTTP errors.
+          # -o, --output, Write output to 'colors.json' instead of stdout
+          if curl -f -o colors.json https://raw.githubusercontent.com/ozh/github-colors/main/colors.json; then
+            _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M")
+            git add colors.json
+            git commit --allow-empty -m "[UPDATE] - colors.json ($_date)"
+          fi
+
+
+
+
       - name: Commit and Push Data
         run: |
           _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M")
           
-          git add .
+          git add data.json
           git commit --allow-empty -m "[UPDATE] - data.json ($_date)"
 
           git pull
