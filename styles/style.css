@@ -32,8 +32,8 @@ html, body {
 }
 
 .apresentacao {
-    padding: 10%;
-    padding-left: 8%;
+    /* padding: 10%; */
+    padding-left: 10%;
     
 
     display: flex;
@@ -114,7 +114,7 @@ html, body {
     justify-content: space-between;
     align-items: center;
 
-    padding: 2% 0% 0% 8%;
+    padding: 2% 0% 0% 12%;
 }
 
 .header__nav {

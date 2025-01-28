@@ -13,19 +13,31 @@ async function fetchRepositoryData() {
     return response;
 }
 
-
 function renderRepositoryInfo(repositoryInfo, socialPreviewURL, tag) {
-    const item = document.createElement('div');
-    item.classList.add('card');
+    const div = document.createElement('div');
+    div.classList.add('gallery__container__projects__container');
 
-    item.innerHTML = `
+    const cardDiv = document.createElement('div');
+    cardDiv.classList.add('gallery__container__projects__card');
+
+    const right = document.createElement('div');
+    right.classList.add('gallery__container__projects__container__top__right__border');
+
+    const left = document.createElement('div');
+    left.classList.add('gallery__container__projects__container__bottom__left__border');
+
+    cardDiv.innerHTML = `
         <a class="" href="${repositoryInfo.url}"></a>
         <img class="card-img" src="${socialPreviewURL}" alt="Repository Preview Image"></img>
         <h3 class="card-title">${formatString(repositoryInfo.name)}</h3>
         <p class="card-description">${repositoryInfo.description || "Sem descrição"}</p>
     `;
-
-    tag.appendChild(item);
+    
+    div.appendChild(right);
+    div.appendChild(left);
+    div.appendChild(cardDiv);
+    
+    tag.appendChild(div);
 }
 
 
@@ -66,7 +78,7 @@ function formatString(string) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    const tag = document.getElementById('repositoryCardList');
+    const tag = document.getElementById('gallery');
 
     buildCardInfo(tag);
 });
