@@ -5,8 +5,8 @@
 */
 
 async function fetchRepositoryData() {
-    const response = await fetch('./data.json')
-        .then((response) => response.json());
+    const response = await fetch('./data/repo_data.json')
+        .then((response) => response.json()).catch((error) => console.error(error));
 
     console.log(response);
 

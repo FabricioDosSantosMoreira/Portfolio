@@ -86,8 +86,8 @@ jobs:
           echo "Downloading GitHub Colors JSON..."
           
           # -f, --fail, Fail silently (no output at all) on HTTP errors.
-          # -o, --output, Write output to 'github_color_data.json' instead of stdout
-          if curl -f -o data/github_color_data.json https://raw.githubusercontent.com/ozh/github-colors/master/colors.json; then
+          # -o, --output, Write output to 'data/github_color_data.json' instead of stdout
+          if curl -f -o "./data/github_color_data.json" https://raw.githubusercontent.com/ozh/github-colors/master/colors.json; then
             _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M")
             git add github_color_data.json
             git commit --allow-empty -m "[UPDATE] - github_color_data.json ($_date)"
