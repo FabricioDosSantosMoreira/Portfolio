@@ -25,12 +25,12 @@ jobs:
       
       - name: Remove Old Data And Commit
         run: |
-          rm -f data.json
+          rm -f repo_data.json
           
           _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M") 
 
           git add .
-          git commit --allow-empty -m "[REMOVE] - data.json ($_date)"
+          git commit --allow-empty -m "[REMOVE] - repo_data.json ($_date)"
 
       - name: Fetch Repository Data Using GitHub API
         env:
@@ -48,8 +48,8 @@ jobs:
             "FabricioDosSantosMoreira/PyQT5-Basic-Examples"
           )
 
-          # Open 'data.json' with a '['
-          echo "[" > data.json
+          # Open 'repo_data.json' with a '['
+          echo "[" > repo_data.json
 
           # Iterate over 'REPOS' to search data
           for REPO in "${REPOS[@]}"; do
@@ -66,18 +66,18 @@ jobs:
 
             echo "Data Fetched | $RESPONSE"
 
-            # Adds 'RESPONSE' to 'data.json'
-            echo "$RESPONSE" | jq '.data.repository' >> data.json
+            # Adds 'RESPONSE' to 'repo_data.json'
+            echo "$RESPONSE" | jq '.repo_data.repository' >> repo_data.json
             
-            # Adds a ',' to 'data.json' to separate objects
-            echo "," >> data.json
+            # Adds a ',' to 'repo_data.json' to separate objects
+            echo "," >> repo_data.json
           done
           
           # Removes the last ','
-          sed -i '$ s/,$//' data.json
+          sed -i '$ s/,$//' repo_data.json
 
-          # Closes 'data.json' with a ']'
-          echo "]" >> data.json
+          # Closes 'repo_data.json' with a ']'
+          echo "]" >> repo_data.json
 
       - name: Fetch And Commit Color Data Using CURL
         env:
@@ -86,11 +86,11 @@ jobs:
           echo "Downloading GitHub Colors JSON..."
           
           # -f, --fail, Fail silently (no output at all) on HTTP errors.
-          # -o, --output, Write output to 'colors.json' instead of stdout
-          if curl -f -o colors.json https://raw.githubusercontent.com/ozh/github-colors/master/colors.json; then
+          # -o, --output, Write output to 'github_color_data.json' instead of stdout
+          if curl -f -o data/github_color_data.json https://raw.githubusercontent.com/ozh/github-colors/master/colors.json; then
             _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M")
-            git add colors.json
-            git commit --allow-empty -m "[UPDATE] - colors.json ($_date)"
+            git add github_color_data.json
+            git commit --allow-empty -m "[UPDATE] - github_color_data.json ($_date)"
           fi
 
 
@@ -100,8 +100,8 @@ jobs:
         run: |
           _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M")
           
-          git add data.json
-          git commit --allow-empty -m "[UPDATE] - data.json ($_date)"
+          git add repo_data.json
+          git commit --allow-empty -m "[UPDATE] - repo_data.json ($_date)"
 
           git pull
           git push
