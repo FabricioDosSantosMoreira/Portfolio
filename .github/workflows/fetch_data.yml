@@ -60,7 +60,7 @@ jobs:
 
             RESPONSE=$(curl -X POST -H "Authorization: Bearer $READ_ACCESS_TOKEN" \
               -H "Content-Type: application/json" \
-              -d "{\"query\": \"{ repository(owner: \\\"$OWNER\\\", name: \\\"$NAME\\\") { name description url openGraphImageUrl } }\"}" \
+              -d "{\"query\": \"{ repository(owner: \\\"$OWNER\\\", name: \\\"$NAME\\\") { name description url openGraphImageUrl languages(first: 100) { edges { node { name } size } } } }\"}" \
               https://api.github.com/graphql
             )
 
