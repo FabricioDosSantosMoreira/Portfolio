@@ -87,7 +87,7 @@ jobs:
           
           # -f, --fail, Fail silently (no output at all) on HTTP errors.
           # -o, --output, Write output to 'colors.json' instead of stdout
-          if curl -f -o colors.json https://raw.githubusercontent.com/ozh/github-colors/main/colors.json; then
+          if curl -f -o colors.json https://raw.githubusercontent.com/ozh/github-colors/master/colors.json; then
             _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M")
             git add colors.json
             git commit --allow-empty -m "[UPDATE] - colors.json ($_date)"
