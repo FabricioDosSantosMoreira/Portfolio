@@ -89,7 +89,7 @@ jobs:
           # -o, --output, Write output to 'data/github_color_data.json' instead of stdout
           if curl -f -o "./data/github_color_data.json" https://raw.githubusercontent.com/ozh/github-colors/master/colors.json; then
             _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M")
-            git add github_color_data.json
+            git add "./data/github_color_data.json"
             git commit --allow-empty -m "[UPDATE] - github_color_data.json ($_date)"
           fi
 
@@ -100,7 +100,7 @@ jobs:
         run: |
           _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M")
           
-          git add repo_data.json
+          git add "./data/repo_data.json"
           git commit --allow-empty -m "[UPDATE] - repo_data.json ($_date)"
 
           git pull
