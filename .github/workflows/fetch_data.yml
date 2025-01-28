@@ -25,7 +25,7 @@ jobs:
       
       - name: Remove Old Data And Commit
         run: |
-          rm -f repo_data.json
+          rm -f "./data/repo_data.json"
           
           _date=$(TZ="UTC" date +"%d/%m/%Y %H:%M") 
 
@@ -49,7 +49,7 @@ jobs:
           )
 
           # Open 'repo_data.json' with a '['
-          echo "[" > repo_data.json
+          echo "[" > "./data/repo_data.json"
 
           # Iterate over 'REPOS' to search data
           for REPO in "${REPOS[@]}"; do
@@ -67,17 +67,17 @@ jobs:
             echo "Data Fetched | $RESPONSE"
 
             # Adds 'RESPONSE' to 'repo_data.json'
-            echo "$RESPONSE" | jq '.repo_data.repository' >> repo_data.json
+            echo "$RESPONSE" | jq "./data/repo_data.json" >> "./data/repo_data.json"
             
             # Adds a ',' to 'repo_data.json' to separate objects
-            echo "," >> repo_data.json
+            echo "," >> "./data/repo_data.json"
           done
           
           # Removes the last ','
-          sed -i '$ s/,$//' repo_data.json
+          sed -i '$ s/,$//' "./data/repo_data.json"
 
           # Closes 'repo_data.json' with a ']'
-          echo "]" >> repo_data.json
+          echo "]" >> "./data/repo_data.json"
 
       - name: Fetch And Commit Color Data Using CURL
         env:
@@ -89,6 +89,7 @@ jobs:
           # -o, --output, Write output to 'data/github_color_data.json' instead of stdout
           if curl -f -o "./data/github_color_data.json" https://raw.githubusercontent.com/ozh/github-colors/master/colors.json; then
             ls
+            ls ./data
 
             git status
 
