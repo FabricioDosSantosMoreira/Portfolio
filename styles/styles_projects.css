@@ -12,6 +12,9 @@
 
     --fonte-principal: 'Krona One', sans-serif;
     --fonte-secundaria: 'Montserrat', sans-serif;
+
+    --angle: 0deg;
+
 }
 
 
@@ -25,6 +28,8 @@ html, body {
     justify-content: center;
 
     padding: 6% 12%;
+
+    
 }
 
 .gallery__container__projects {
@@ -80,9 +85,9 @@ html, body {
     z-index: 0;
 
     border-image-slice: 1;
-    border-image-source: conic-gradient(from var(--angle),#ff4545, #00ff99, #006aff, #ff0095, #ff4545);
-    border-image-source: conic-gradient(from var(--angle),  transparent 50%, var(--cor-secundaria));
+  
     animation: spin 3s linear infinite;
+    border-image-source: conic-gradient(from var(--angle), transparent 50%, var(--cor-secundaria));
 }
 
 
@@ -90,6 +95,7 @@ html, body {
 
     background-color: var(--cor-terciaria);
 
+    border: 2.5px solid var(--cor-terciaria);
     border-top-right-radius: 12px;
     border-bottom-left-radius: 12px;
     
@@ -123,6 +129,14 @@ html, body {
 }
 
 
+.gallery__container__projects__card__colored__div {
+    display: flex;
+
+    margin-top: -3.5px;
+    height: 20px;
+    width: 100%;
+}
+
 
 
 
@@ -136,7 +150,7 @@ html, body {
 
 .card-img {
     width: 100%;
-    height: 150px;
+    height: fit-content;
     object-fit: cover;
 }
 
