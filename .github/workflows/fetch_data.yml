@@ -36,8 +36,16 @@ jobs:
         env:
           READ_ACCESS_TOKEN: ${{ secrets.READ_ACCESS_TOKEN }}
         run: |
-          EXCLUDED_REPOS=("Hello-World" "YTDownloader" "dio-lab-open-source" "alura-challenge-amigo-secreto")
+          
           OWNER="FabricioDosSantosMoreira"
+          EXCLUDED_REPOS=(
+            "Hello-World" 
+            "YTDownloader" 
+            "dio-lab-open-source" 
+            "alura-challenge-amigo-secreto"
+          )
+  
+          
           
           echo "Fetching GitHub Data | All Repo Names..."
 
@@ -52,6 +60,18 @@ jobs:
           REPO_NAMES=($(echo "$RESPONSE" | jq -r '.data.user.repositories.nodes[].name'))
           
           echo "REPO_NAMES | ${REPO_NAMES[@]}"
+
+          # Itera sobre os repositórios e compara com a lista de excluídos
+          for repo in "${REPO_NAMES[@]}"; do
+              if [[ ! " ${EXCLUDED_REPOS[@]} " =~ " ${repo} " ]]; then
+                  echo "Incluído: $repo"
+                  # Aqui você pode adicionar qualquer lógica para processar os repositórios válidos
+              else
+                  echo "Excluído: $repo"
+              fi
+          done
+
+
           
 
 
