@@ -43,7 +43,7 @@ jobs:
 
           RESPONSE=$(curl -X POST -H "Authorization: Bearer $READ_ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
-            -d "{\"query\": \"{ user(login: \\\"$OWNER\\\") { repositories(first: 100) { nodes { name } } } }\"}" \
+            -d "{\"query\": \"{ user(login: "$OWNER") { repositories(first: 100) { nodes { name } } } }\"}" \
             https://api.github.com/graphql
           )
           echo "Data Fetched | $RESPONSE"
