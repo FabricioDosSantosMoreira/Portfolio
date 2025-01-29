@@ -46,6 +46,8 @@ jobs:
             "FabricioDosSantosMoreira/SENAI-projeto-django"
             "FabricioDosSantosMoreira/XPe-Python-Bootcamp"
             "FabricioDosSantosMoreira/PyQT5-Basic-Examples"
+            "FabricioDosSantosMoreira/Portfolio"
+            "FabricioDosSantosMoreira/SENAI-desafio-saep"
           )
 
           # Open 'repo_data.json' with a '['

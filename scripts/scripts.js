@@ -6,7 +6,7 @@
 
 // Global Variables
 let colorInfo;  // { 'languageName': { 'color', 'url' } }
-let repoInfo;   // [ {'name', 'description', 'url', 'openGraphImageUrl', 'stargazersCount', 'forksCount', 'watchers', 'languages': { 'edges': [ {'node': {'name'}, 'size'} ] } } ]
+let repoInfo;   // [ {'name', 'description', 'url', 'openGraphImageUrl', 'stargazers': { 'totalCount' }, 'forks': { 'totalCount' }, 'watchers': { 'totalCount' }, 'languages': { 'edges': [ {'node': {'name'}, 'size'} ] } } ]
 
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -45,13 +45,13 @@ async function buildRepoInfoAndRender(tag) {
  
     for (let info of repoInfo) {
 
-        // Basically means that the repository doesn't have a real social preview image, so set the default image
+        // Basically means that the repository doesn't have a custom social preview image, so set the default image
         if (info.openGraphImageUrl.includes('https://opengraph.githubassets.com/')) {
             info.openGraphImageUrl = './assets/img/github-logo.png';
         }
 
-        info.mostUsedLanuageName = getMostUsedLanguageName(info.languages);
-        info.mostUsedLanuageColor = getLanguageColor(info.mostUsedLanuageName);
+        info.mostUsedLanguageName = getMostUsedLanguageName(info.languages);
+        info.mostUsedLanguageColor = getLanguageColor(info.mostUsedLanguageName);
 
         renderRepositoryInfo(tag, info);
     }
@@ -73,18 +73,35 @@ function renderRepositoryInfo(tag, repositoryInfo) {
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('gallery__container__projects__card');
 
+
+    
+    const statsDiv = buildRepoExtraInfoDiv(
+        repositoryInfo.stargazers.totalCount, 
+        repositoryInfo.forks.totalCount, 
+        repositoryInfo.watchers.totalCount,
+        repositoryInfo.mostUsedLanguageName,
+        repositoryInfo.mostUsedLanguageColor,
+    );
+
+
     cardDiv.innerHTML = `
-       
         <img class="card-img" src="${repositoryInfo.openGraphImageUrl}" alt="Repository Preview Image"></img>
         ${colorsDiv.outerHTML}
-        <h3 class="card-title">${formatRepoName(repositoryInfo.name)}</h3>
+        
+        <a class="card--title" href="${repositoryInfo.url}" target="_blank">
+            <img class="card--title--img" src="./assets/icons/link.png" alt="Link Icon">
+            <span class="card--title--span">${formatRepoName(repositoryInfo.name)}</span>
+        </a>
+        
         <p class="card-description">${repositoryInfo.description || "Sem descrição"}</p>
         <a href="${repositoryInfo.url}"></a>
+        ${statsDiv.outerHTML}
     `;
 
 
     // Build the Left and Right Borders Div with Styles
     const [leftBorderDiv, rightBorderDiv] = buildBorderDiv(repositoryInfo.languages);
+
 
 
     // Append all the Divs to the Container Div
@@ -124,6 +141,37 @@ function buildBorderDiv(languages) {
     return [leftBorderDiv, rightBorderDiv];
 }
 
+
+function buildRepoExtraInfoDiv(stargazers, forksCount, watchers, languageName, languageColor) {
+
+    // Build the Stats Div with Styles
+    const statsDiv = document.createElement('div');
+    statsDiv.classList.add('gallery__container__projects__card__info');
+
+    statsDiv.innerHTML = `
+        <div class="gallery__container__projects__card__info__language">
+            <span class="colored-dot" style="background-color: ${languageColor}"></span>
+            <span class="gallery__container__projects__card__info__language__span no-copy">${languageName}</span>
+        </div>
+
+        <div class="gallery__container__projects__card__info__stats">
+        <div class="gallery__container__projects__card__info__stats__item item--star">
+            <img class="gallery__container__projects__card__info__stats__item__icon" src="./assets/icons/star.png" alt="Stars Icon">
+            <span class="gallery__container__projects__card__info__stats__item__span no-copy">${stargazers}</span>
+        </div>
+        <div class="gallery__container__projects__card__info__stats__item item--eye">
+            <img class="gallery__container__projects__card__info__stats__item__icon" src="./assets/icons/eye.png" alt="Watchers Icon">
+            <span class="gallery__container__projects__card__info__stats__item__span no-copy">${watchers}</span>
+        </div>
+        <div class="gallery__container__projects__card__info__stats__item item--fork">
+            <img class="gallery__container__projects__card__info__stats__item__icon" src="./assets/icons/fork.png" alt="Forks Icon">
+            <span class="gallery__container__projects__card__info__stats__item__span no-copy">${forksCount}</span>
+        </div>
+        </div>
+    `;
+
+    return statsDiv;
+}
 
 function buildColorDiv(languages) {
     let LanguagesNameAndPercentage = getUsedLanguagesNameAndPercentage(languages);
@@ -211,34 +259,3 @@ function formatRepoName(string) {
 
     return newString;
 };
-
-
-
-
-
-
-
-
-
-
-// URL do endpoint da API do GitHub
-const url = "https://api.github.com/repos/FabricioDosSantosMoreira/SENAI-projeto-django";
-
-// Fazer o request para a API
-fetch(url)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`Erro: ${response.status}`); // Verifica se o request foi bem-sucedido
-    }
-    return response.json(); // Converte a resposta para JSON
-  })
-  .then(data => {
-    // Manipular os dados retornados
-    console.log("Dados do repositório:", data);
-  })
-  .catch(error => {
-    // Lidar com erros
-    console.error("Erro ao acessar a API do GitHub:", error);
-  });
-
-
