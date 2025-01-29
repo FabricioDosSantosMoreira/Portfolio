@@ -39,14 +39,11 @@ jobs:
           
           OWNER="FabricioDosSantosMoreira"
           EXCLUDED_REPOS=(
-            "Hello-World" 
-            "YTDownloader" 
             "dio-lab-open-source" 
             "alura-challenge-amigo-secreto"
           )
   
-          
-          
+
           echo "Fetching GitHub Data | All Repo Names..."
 
           RESPONSE=$(curl -X POST -H "Authorization: Bearer $READ_ACCESS_TOKEN" \
@@ -61,61 +58,39 @@ jobs:
           
           echo "REPO_NAMES | ${REPO_NAMES[@]}"
 
-          # Itera sobre os repositórios e compara com a lista de excluídos
-          for repo in "${REPO_NAMES[@]}"; do
-              if [[ ! " ${EXCLUDED_REPOS[@]} " =~ " ${repo} " ]]; then
-                  echo "Incluído: $repo"
-                  # Aqui você pode adicionar qualquer lógica para processar os repositórios válidos
-              else
-                  echo "Excluído: $repo"
-              fi
-          done
-
 
           
-
-
-
-
-          # 'REPOS' must be on the format 'OWNER/REPOSITORY'
-          REPOS=(
-            "FabricioDosSantosMoreira/react-web-calculator"
-            "FabricioDosSantosMoreira/DIO.me"
-            "FabricioDosSantosMoreira/PlanetsVsGalaxiesClassifier"
-            "FabricioDosSantosMoreira/LeetCode-Solutions"
-            "FabricioDosSantosMoreira/TicTacToe"
-            "FabricioDosSantosMoreira/SENAI-projeto-django"
-            "FabricioDosSantosMoreira/XPe-Python-Bootcamp"
-            "FabricioDosSantosMoreira/PyQT5-Basic-Examples"
-            "FabricioDosSantosMoreira/Portfolio"
-            "FabricioDosSantosMoreira/SENAI-desafio-saep"
-          )
-
           # Open 'repo_data.json' with a '['
           echo "[" > "./data/repo_data.json"
 
-          # Iterate over 'REPOS' to search data
-          for REPO in "${REPOS[@]}"; do
-            OWNER=$(echo "$REPO" | cut -d '/' -f 1)
-            NAME=$(echo "$REPO" | cut -d '/' -f 2)
 
-            echo "Fetching Data | $REPO"
 
-            RESPONSE=$(curl -X POST -H "Authorization: Bearer $READ_ACCESS_TOKEN" \
-              -H "Content-Type: application/json" \
-              -d "{\"query\": \"{ repository(owner: \\\"$OWNER\\\", name: \\\"$NAME\\\") { name description url openGraphImageUrl stargazers { totalCount } forks { totalCount } watchers { totalCount } languages(first: 100) { edges { node { name } size } } } }\"}" \
-              https://api.github.com/graphql
-            )
+          # Itera sobre os repositórios e compara com a lista de excluídos
+          for NAME in "${REPO_NAMES[@]}"; do
+              if [[ ! " ${EXCLUDED_REPOS[@]} " =~ " ${NAME} " ]]; then
+                  echo "Incluído: $NAME"
 
-            echo "Data Fetched | $RESPONSE"
+                  echo "Fetching Data | $REPO"
 
-            # Adds 'RESPONSE' to 'repo_data.json'
-            echo "$RESPONSE" | jq ".data.repository" >> "./data/repo_data.json"
-            
-            # Adds a ',' to 'repo_data.json' to separate objects
-            echo "," >> "./data/repo_data.json"
+                  RESPONSE=$(curl -X POST -H "Authorization: Bearer $READ_ACCESS_TOKEN" \
+                    -H "Content-Type: application/json" \
+                    -d "{\"query\": \"{ repository(owner: \\\"$OWNER\\\", name: \\\"$NAME\\\") { name description url openGraphImageUrl stargazers { totalCount } forks { totalCount } watchers { totalCount } languages(first: 100) { edges { node { name } size } } } }\"}" \
+                    https://api.github.com/graphql
+                  )
+
+                        
+                  echo "Data Fetched | $RESPONSE"
+
+                  # Adds 'RESPONSE' to 'repo_data.json'
+                  echo "$RESPONSE" | jq ".data.repository" >> "./data/repo_data.json"
+                  
+                  # Adds a ',' to 'repo_data.json' to separate objects
+                  echo "," >> "./data/repo_data.json"
+              else
+                  echo "Excluído: $NAME"
+              fi
           done
-          
+
           # Removes the last ','
           sed -i '$ s/,$//' "./data/repo_data.json"
 
