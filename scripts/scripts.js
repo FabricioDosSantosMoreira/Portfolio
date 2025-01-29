@@ -6,7 +6,7 @@
 
 // Global Variables
 let colorInfo;  // { 'languageName': { 'color', 'url' } }
-let repoInfo;   // [ {'name', 'description', 'url', 'openGraphImageUrl', 'stargazers_count', 'forks_count', 'watchers', 'languages': { 'edges': [ {'node': {'name'}, 'size'} ] } } ]
+let repoInfo;   // [ {'name', 'description', 'url', 'openGraphImageUrl', 'stargazersCount', 'forksCount', 'watchers', 'languages': { 'edges': [ {'node': {'name'}, 'size'} ] } } ]
 
 
 document.addEventListener('DOMContentLoaded', async function () {
