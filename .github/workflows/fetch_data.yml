@@ -36,6 +36,8 @@ jobs:
         env:
           READ_ACCESS_TOKEN: ${{ secrets.READ_ACCESS_TOKEN }}
         run: |
+          EXCLUDED_REPOS=("Hello-World" "YTDownloader" "dio-lab-open-source" "alura-challenge-amigo-secreto")
+          OWNER="FabricioDosSantosMoreira"
           
           echo "Fetching GitHub Data | All Repo Names..."
 
@@ -44,11 +46,16 @@ jobs:
             -d "{\"query\": \"{ user(login: \\\"$OWNER\\\") { repositories(first: 100) { nodes { name } } } }\"}" \
             https://api.github.com/graphql
           )
-
           echo "Data Fetched | $RESPONSE"
 
-
+          # Extrai os nomes dos repositórios e os armazena em um array
+          REPO_NAMES=($(echo "$RESPONSE" | jq -r '.data.user.repositories.nodes[].name'))
           
+          echo "REPO_NAMES | ${REPO_NAMES[@]}"
+          
+
+
+
 
           # 'REPOS' must be on the format 'OWNER/REPOSITORY'
           REPOS=(
