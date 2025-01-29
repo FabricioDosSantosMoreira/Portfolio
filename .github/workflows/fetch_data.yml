@@ -36,6 +36,20 @@ jobs:
         env:
           READ_ACCESS_TOKEN: ${{ secrets.READ_ACCESS_TOKEN }}
         run: |
+          
+          echo "Fetching GitHub Data | All Repo Names..."
+
+          RESPONSE=$(curl -X POST -H "Authorization: Bearer $READ_ACCESS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"query\": \"{ user(login: \\\"$OWNER\\\") { repositories(first: 100) { nodes { name } } } }\"}" \
+            https://api.github.com/graphql
+          )
+
+          echo "Data Fetched | $RESPONSE"
+
+
+          
+
           # 'REPOS' must be on the format 'OWNER/REPOSITORY'
           REPOS=(
             "FabricioDosSantosMoreira/react-web-calculator"
