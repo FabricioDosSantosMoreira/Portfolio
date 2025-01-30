@@ -183,15 +183,15 @@ html, body {
 
 
 .item--star {
-    background-color: yellow;
+    background-color: #e3b341;
 }
 
 .item--eye {
-    background-color: coral;
+    background-color: #ca7bff;
 }
 
 .item--fork {
-    background-color: lightgreen;
+    background-color: #85847d;
 }
 
 
