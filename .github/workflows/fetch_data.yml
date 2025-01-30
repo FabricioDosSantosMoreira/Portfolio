@@ -57,9 +57,9 @@ jobs:
 
           echo "Changes Committed and Pushed!"
 
-      - name: Fetch Repository Names Using GitHub GraphQL API
+      - name: Fetch Repository Data Using GitHub GraphQL API
         run: |
-          echo "Fetching GitHub Repo Names..."
+          echo "Fetching GitHub Repository Data..."
 
           # Variables
           OWNER="FabricioDosSantosMoreira"
@@ -76,17 +76,6 @@ jobs:
 
           # Extracts the repository names and stores them in an array
           REPO_NAMES=($(echo "$RESPONSE" | jq -r '.data.user.repositories.nodes[].name'))
-          
-          echo "${RESPONSE}"
-          echo "${REPO_NAMES[@]}"
-          echo "Repo Names Fetched!"
-
-      - name: Fetch Repository Data Using GitHub GraphQL API
-        run: |
-          echo "Fetching GitHub Repository Data..."
-
-
-          echo "${REPO_NAMES[@]}"
 
           # Open 'repo_data.json' with a '['
           echo "[" > "./data/repo_data.json"
