@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '55 23 * * 0'
+    - cron: '0 0 * * 0'
 
 jobs:
   fetch-data:
@@ -18,7 +18,6 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set Up Git
-        id: setup
         run: |
           echo "Setting Up Git..."
 
@@ -29,8 +28,7 @@ jobs:
 
           echo "Set Up Git Complete!"
 
-      - name: Clear Old Repo Data
-        id: clear-old-repo-data
+      - name: Clear Old Repo Data Files
         run: |
           echo "Clearing Old Data Files..."
 
@@ -79,11 +77,16 @@ jobs:
           # Extracts the repository names and stores them in an array
           REPO_NAMES=($(echo "$RESPONSE" | jq -r '.data.user.repositories.nodes[].name'))
           
+          echo "${RESPONSE}"
+          echo "${REPO_NAMES[@]}"
           echo "Repo Names Fetched!"
 
       - name: Fetch Repository Data Using GitHub GraphQL API
         run: |
           echo "Fetching GitHub Repository Data..."
+
+
+          echo "${REPO_NAMES[@]}"
 
           # Open 'repo_data.json' with a '['
           echo "[" > "./data/repo_data.json"
@@ -152,7 +155,7 @@ jobs:
           # Commit and Push Data
           git add "./data/repo_data.json"
           git commit --allow-empty -m "[UPDATE] - repo_data.json ($_datetime)"
-          
+
           git add "./data/github_color_data.json"
           git commit --allow-empty -m "[UPDATE] - github_color_data.json ($_datetime)"
 
