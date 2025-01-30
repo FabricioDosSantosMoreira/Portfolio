@@ -73,7 +73,6 @@ function renderRepositoryInfo(tag, repositoryInfo) {
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('gallery__container__projects__card');
 
-
     
     const statsDiv = buildRepoExtraInfoDiv(
         repositoryInfo.stargazers.totalCount, 
@@ -116,6 +115,8 @@ function renderRepositoryInfo(tag, repositoryInfo) {
 
 function buildBorderDiv(languages) { 
     let LanguagesNameAndPercentage = getUsedLanguagesNameAndPercentage(languages);
+
+    console.log(LanguagesNameAndPercentage);
 
     // Build the Left and Right Borders Div with Styles Based on the Languages Used
     const leftBorderDiv = document.createElement('div');
@@ -232,6 +233,11 @@ function getUsedLanguagesNameAndPercentage(languages) {
     // Sum all the sizes in 'languages'
     for (let index in languages['edges']) {
         totalSize += languages['edges'][index]['size'];
+    }
+
+    // Fix: When a repository doesn't have a language. So we set to 'Undefined'
+    if (totalSize == 0) {
+        return { 'Undefined': 100 };
     }
 
     let languagesArray = [];
