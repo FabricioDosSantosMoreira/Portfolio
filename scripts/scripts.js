@@ -28,22 +28,15 @@ document.addEventListener('DOMContentLoaded', async function () {
 async function fetchDataOrFallbackData(path, fallbackPath) {
     try {
         const response = await fetch(path);
-        if (!response.ok) throw new Error(`Erro ao buscar ${path}`);
-        
+        if (!response.ok) throw new Error(`Failed to Load '${path}'`);
         return await response.json();
 
     } catch (error) {
-
-        console.warn(`Erro primário: ${error.message}, tentando fallback...`);
+        console.warn(`${error.message}. Trying to Load Fallback Data...`);
         
-        try {
-            const fallbackResponse = await fetch(fallbackPath);
-            if (!fallbackResponse.ok) throw new Error(`Erro ao buscar fallback ${fallbackPath}`);
-            return await fallbackResponse.json();
-        } catch (fallbackError) {
-            console.error(`Erro no fallback: ${fallbackError.message}`);
-            throw fallbackError; // Propaga o erro para quem chamou a função lidar com ele
-        }
+        // Fallback path must always contain a valid data file
+        const fallbackResponse = await fetch(fallbackPath);
+        return await fallbackResponse.json();
     }
 }
 

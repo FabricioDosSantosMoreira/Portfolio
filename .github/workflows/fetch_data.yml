@@ -5,15 +5,11 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 0 * * 0'
+    - cron: '55 23 * * 0'
 
 jobs:
   setup-git:
     runs-on: ubuntu-latest
-
-    outputs:
-      git_user: ${{ steps.setup.outputs.git_user }}
-      git_email: ${{ steps.setup.outputs.git_email }}
 
     steps:
       - name: Set Up Git
@@ -25,10 +21,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
-
-          # Set Outputs
-          echo "::set-output name=git_user::github-actions[bot]"
-          echo "::set-output name=git_email::41898282+github-actions[bot]@users.noreply.github.com"
 
           echo "Set Up Git Complete!"
   
@@ -190,4 +182,3 @@ jobs:
           git push
 
           echo "Data Committed and Pushed!"
-          
