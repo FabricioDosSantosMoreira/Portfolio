@@ -71,7 +71,7 @@ function renderRepositoryInfo(tag, repositoryInfo) {
 
     // Build the Card Div with Styles
     const cardDiv = document.createElement('div');
-    cardDiv.classList.add('gallery__container__projects__card');
+    cardDiv.classList.add('card');
 
     
     const statsDiv = buildRepoExtraInfoDiv(
@@ -82,17 +82,36 @@ function renderRepositoryInfo(tag, repositoryInfo) {
         repositoryInfo.mostUsedLanguageColor,
     );
 
+    let homepageUrlTag = document.createElement('a');
+    homepageUrlTag.style.width = "0";
+
+    if (repositoryInfo.homepageUrl != "") {
+        homepageUrlTag.classList.add('card__title__container__homepage');
+
+        homepageUrlTag.href = repositoryInfo.homepageUrl;
+        homepageUrlTag.target = "_blank";
+        homepageUrlTag.style.width = "12.5%";
+
+        homepageUrlTag.innerHTML = `
+            <img class="card--icons" src="./assets/icons/external_link_2.png" alt="HomePage Link Icon">
+        `;
+    }
+
 
     cardDiv.innerHTML = `
-        <img class="card-img" src="${repositoryInfo.openGraphImageUrl}" alt="Repository Preview Image"></img>
+        <img class="card__image" src="${repositoryInfo.openGraphImageUrl}" alt="Repository Preview Image"></img>
         ${colorsDiv.outerHTML}
+
+        <div class="card__title__container">
+            <a class="card__title__container__info" href="${repositoryInfo.url}" target="_blank">
+                <img class="card--icons" src="./assets/icons/external_link_1.png" alt="GitHub Link Icon">
+                <span>${formatRepoName(repositoryInfo.name)}</span>
+            </a>
+            ${homepageUrlTag.outerHTML}
+        </div>
+
         
-        <a class="card--title" href="${repositoryInfo.url}" target="_blank">
-            <img class="card--title--img" src="./assets/icons/link.png" alt="Link Icon">
-            <span class="card--title--span">${formatRepoName(repositoryInfo.name)}</span>
-        </a>
-        
-        <p class="card-description">${repositoryInfo.description || "Sem descrição"}</p>
+        <p class="card__description no-copy">${repositoryInfo.description || "Sem descrição"}</p>
         <a href="${repositoryInfo.url}"></a>
         ${statsDiv.outerHTML}
     `;
@@ -115,7 +134,7 @@ function renderRepositoryInfo(tag, repositoryInfo) {
 
 function buildBorderDiv(languages) { 
     let LanguagesNameAndPercentage = getUsedLanguagesNameAndPercentage(languages);
-    
+
     // Build the Left and Right Borders Div with Styles Based on the Languages Used
     const leftBorderDiv = document.createElement('div');
     const rightBorderDiv = document.createElement('div');
