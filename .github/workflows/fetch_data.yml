@@ -75,11 +75,11 @@ jobs:
             https://api.github.com/graphql
           )
 
-          echo "Repo Names Fetched!"
-
           # Extracts the repository names and stores them in an array
           REPO_NAMES=($(echo "$RESPONSE" | jq -r '.data.user.repositories.nodes[].name'))
           
+          echo "Repo Names Fetched!"
+
       - name: Fetch Repository Data Using GitHub GraphQL API
         run: |
           echo "Fetching GitHub Repository Data..."
@@ -139,6 +139,8 @@ jobs:
           else
             echo "GitHub Color Data File Not Found!"
           fi
+
+          echo "Data Files Verified!"
 
       - name: Commit and Push Data
         run: |
