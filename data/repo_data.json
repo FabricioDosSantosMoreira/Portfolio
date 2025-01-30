@@ -381,7 +381,7 @@
 }
 ,
 {
-  "name": "PlanetsVsGalaxiesClassifier",
+  "name": "Planets Vs Galaxies Classifier",
   "description": "A Machine Learning Project to Classify Images of Planets and Galaxies. 🪐",
   "url": "https://github.com/FabricioDosSantosMoreira/PlanetsVsGalaxiesClassifier",
   "homepageUrl": "https://colab.research.google.com/drive/13vwkcfclhUynVIVa8Grw3FJCq8bMJOOS?usp=sharing",
