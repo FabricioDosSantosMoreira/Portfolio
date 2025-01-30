@@ -14,6 +14,9 @@ jobs:
       READ_ACCESS_TOKEN: ${{ secrets.READ_ACCESS_TOKEN }}
 
     steps:
+      - name: Check Out Repository
+        uses: actions/checkout@v3
+
       - name: Set Up Git
         id: setup
         run: |
@@ -45,17 +48,15 @@ jobs:
           _datetime=$(TZ="UTC" date +"%d/%m/%Y %H:%M") 
 
           # Commit and Push Changes
-          git add .
-          git commit --allow-empty -m "[REMOVE] - repo_data.json ($_datetime)"
+          git add './data/github_color_data.json'
           git commit --allow-empty -m "[REMOVE] - github_color_data.json ($_datetime)"
-
+          git add './data/repo_data.json'
+          git commit --allow-empty -m "[REMOVE] - repo_data.json ($_datetime)"
+      
           git pull
           git push
 
           echo "Changes Committed and Pushed!"
-
-      - name: Check Out Repository
-        uses: actions/checkout@v3
 
       - name: Fetch Repository Names Using GitHub GraphQL API
         run: |
@@ -138,7 +139,7 @@ jobs:
           else
             echo "GitHub Color Data File Not Found!"
           fi
-          
+
       - name: Commit and Push Data
         run: |
           echo "Committing and Pushing Data..."
