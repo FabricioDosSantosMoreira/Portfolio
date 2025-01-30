@@ -42,6 +42,7 @@ jobs:
 
       - name: Commit and Push Changes
         run: |
+
           echo "Committing and Pushing Changes..."
 
           # Current Date Time Variable
