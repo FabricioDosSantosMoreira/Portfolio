@@ -27,16 +27,23 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 async function fetchDataOrFallbackData(path, fallbackPath) {
     try {
-        const data = await fetch(path)
-            .then((response) => response.json());
-
-        return data;
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(`Erro ao buscar ${path}`);
+        
+        return await response.json();
 
     } catch (error) {
-        const fallbackData = await fetch(fallbackPath)
-            .then((response) => response.json());
 
-        return fallbackData;
+        console.warn(`Erro primário: ${error.message}, tentando fallback...`);
+        
+        try {
+            const fallbackResponse = await fetch(fallbackPath);
+            if (!fallbackResponse.ok) throw new Error(`Erro ao buscar fallback ${fallbackPath}`);
+            return await fallbackResponse.json();
+        } catch (fallbackError) {
+            console.error(`Erro no fallback: ${fallbackError.message}`);
+            throw fallbackError; // Propaga o erro para quem chamou a função lidar com ele
+        }
     }
 }
 
@@ -195,6 +202,12 @@ function buildColorDiv(languages) {
 
 
 function getLanguageColor(languageName) {
+
+    // Fix: Set a default color when 'languageName' is 'Undefined'
+    if (languageName === 'Undefined') {
+        return '#4D4D4D'
+    }
+
     return colorInfo[languageName]['color'];
 }
 
@@ -209,6 +222,12 @@ function getMostUsedLanguageName(languages) {
             mostUsedLanguageName = languages['edges'][index]['node']['name'];     
         }
     }
+
+    // Fix: When a repository doesn't have a language. So we set to 'Undefined'
+    if (mostUsedLanguageName == '') {
+        mostUsedLanguageName = 'Undefined'
+    }
+
 
     return mostUsedLanguageName;
 }
