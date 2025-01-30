@@ -5,11 +5,13 @@ on:
     branches:
       - main
   schedule:
-    - cron: '45 23 * * 0'
+    - cron: '55 23 * * 0'
 
 jobs:
-  setup-git:
+  fetch-data:
     runs-on: ubuntu-latest
+    env:
+      READ_ACCESS_TOKEN: ${{ secrets.READ_ACCESS_TOKEN }}
 
     steps:
       - name: Check Out Repository
@@ -26,15 +28,7 @@ jobs:
           git config --global pull.rebase true
 
           echo "Set Up Git Complete!"
-  
-  clear-old-repo-data:
-    runs-on: ubunto-latest
-    needs: setup-git
 
-    steps:
-      - name: Check Out Repository
-        uses: actions/checkout@v3
-      
       - name: Clear Old Repo Data
         id: clear-old-repo-data
         run: |
@@ -54,24 +48,16 @@ jobs:
           _datetime=$(TZ="UTC" date +"%d/%m/%Y %H:%M") 
 
           # Commit and Push Changes
-          git add .
-          git commit --allow-empty -m "[REMOVE] - repo_data.json ($_datetime)"
+          git add './data/github_color_data.json'
           git commit --allow-empty -m "[REMOVE] - github_color_data.json ($_datetime)"
-
+        
+          git add './data/repo_data.json'
+          git commit --allow-empty -m "[REMOVE] - repo_data.json ($_datetime)"
+      
           git pull
           git push
 
           echo "Changes Committed and Pushed!"
-
-  fetch-repo-data:
-    runs-on: ubunto-latest
-    needs: [setup-git, clear-old-repo-data]
-    env:
-      READ_ACCESS_TOKEN: ${{ secrets.READ_ACCESS_TOKEN }}
-
-    steps:
-      - name: Check Out Repository
-        uses: actions/checkout@v3
 
       - name: Fetch Repository Names Using GitHub GraphQL API
         run: |
@@ -89,10 +75,10 @@ jobs:
             -d "{\"query\": \"{ user(login: \\\"$OWNER\\\") { repositories(first: 100) { nodes { name } } } }\"}" \
             https://api.github.com/graphql
           )
-  
+
           # Extracts the repository names and stores them in an array
           REPO_NAMES=($(echo "$RESPONSE" | jq -r '.data.user.repositories.nodes[].name'))
-        
+          
           echo "Repo Names Fetched!"
 
       - name: Fetch Repository Data Using GitHub GraphQL API
@@ -105,7 +91,6 @@ jobs:
           # Iterates over the repositories and compares with the excluded list
           for NAME in "${REPO_NAMES[@]}"; do
             if [[ ! " ${EXCLUDED_REPOS[@]} " =~ " ${NAME} " ]]; then
-
               RESPONSE=$(curl -X POST -H "Authorization: Bearer $READ_ACCESS_TOKEN" \
                 -H "Content-Type: application/json" \
                 -d "{\"query\": \"{ repository(owner: \\\"$OWNER\\\", name: \\\"$NAME\\\") { name description url openGraphImageUrl stargazers { totalCount } forks { totalCount } watchers { totalCount } languages(first: 100) { edges { node { name } size } } } }\"}" \
@@ -128,14 +113,6 @@ jobs:
 
           echo "GitHub Repository Data Fetched!"
 
-  fetch-color-data:
-    runs-on: ubuntu-latest
-    needs: [setup-git, clear-old-repo-data]
-    
-    steps:
-      - name: Check Out Repository
-        uses: actions/checkout@v3
-      
       - name: Fetch Color Data Using CURL
         run: |
           echo "Fetching GitHub Colors JSON..."
@@ -147,14 +124,6 @@ jobs:
             echo "Failed to Fetch GitHub Colors JSON!"
           fi
 
-  verify-data:
-    runs-on: ubuntu-latest
-    needs: [setup-git, clear-old-repo-data, fetch-repo-data, fetch-color-data]
-
-    steps:
-      - name: Check Out Repository
-        uses: actions/checkout@v3
-      
       - name: Verify Data Files
         run: |
           echo "Verifying Data Files..."
@@ -172,15 +141,7 @@ jobs:
           fi
 
           echo "Data Files Verified!"
-  
-  commit-data:
-    runs-on: ubuntu-latest
-    needs: [setup-git, clear-old-repo-data, fetch-repo-data, fetch-color-data, verify-data]
 
-    steps: 
-      - name: Check Out Repository
-        uses: actions/checkout@v3
-      
       - name: Commit and Push Data
         run: |
           echo "Committing and Pushing Data..."
@@ -191,7 +152,7 @@ jobs:
           # Commit and Push Data
           git add "./data/repo_data.json"
           git commit --allow-empty -m "[UPDATE] - repo_data.json ($_datetime)"
-
+          
           git add "./data/github_color_data.json"
           git commit --allow-empty -m "[UPDATE] - github_color_data.json ($_datetime)"
 
