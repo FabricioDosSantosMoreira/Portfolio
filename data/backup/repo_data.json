@@ -197,7 +197,7 @@
     "name": "ReNam",
     "description": "ReNam is a file renamer for movies, animes and tv shows",
     "url": "https://github.com/FabricioDosSantosMoreira/ReNam",
-    "openGraphImageUrl": "https://opengraph.githubassets.com/8a59eeab7c35cdc76f388366c54781e6515f994db6d8ba5f4bb4937ed6a329ce/FabricioDosSantosMoreira/ReNam",
+    "openGraphImageUrl": "https://opengraph.githubassets.com/1456b7f516e2432b1c596ee6c4bdfcacf1e040e4f0472a5e063e7491b7a8d107/FabricioDosSantosMoreira/ReNam",
     "stargazers": {
       "totalCount": 1
     },
@@ -208,7 +208,14 @@
       "totalCount": 1
     },
     "languages": {
-      "edges": []
+      "edges": [
+        {
+          "node": {
+            "name": "Python"
+          },
+          "size": 67495
+        }
+      ]
     }
   }
   ,
@@ -394,7 +401,7 @@
     "name": "Portfolio",
     "description": null,
     "url": "https://github.com/FabricioDosSantosMoreira/Portfolio",
-    "openGraphImageUrl": "https://opengraph.githubassets.com/c92b45404f3c420276ae1c60ca2d5f0e9a1e159ef7e14ce9736fedd9ef0ad9e9/FabricioDosSantosMoreira/Portfolio",
+    "openGraphImageUrl": "https://opengraph.githubassets.com/2cdde2ef0630c3f3f6f06eef7b6872f24e76be5f5ec2e70a7d087c4a5869f017/FabricioDosSantosMoreira/Portfolio",
     "stargazers": {
       "totalCount": 0
     },
@@ -422,11 +429,9 @@
           "node": {
             "name": "JavaScript"
           },
-          "size": 8934
+          "size": 9598
         }
       ]
     }
-  }
-  
-  ]
-  
+  }  
+]

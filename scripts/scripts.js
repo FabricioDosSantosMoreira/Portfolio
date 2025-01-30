@@ -115,9 +115,7 @@ function renderRepositoryInfo(tag, repositoryInfo) {
 
 function buildBorderDiv(languages) { 
     let LanguagesNameAndPercentage = getUsedLanguagesNameAndPercentage(languages);
-
-    console.log(LanguagesNameAndPercentage);
-
+    
     // Build the Left and Right Borders Div with Styles Based on the Languages Used
     const leftBorderDiv = document.createElement('div');
     const rightBorderDiv = document.createElement('div');
@@ -277,3 +275,26 @@ function formatRepoName(string) {
 
     return newString;
 };
+
+
+
+
+// URL do endpoint da API do GitHub
+const url = "https://api.github.com/repos/FabricioDosSantosMoreira/react-web-calculator";
+
+// Fazer o request para a API
+fetch(url)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Erro: ${response.status}`); // Verifica se o request foi bem-sucedido
+    }
+    return response.json(); // Converte a resposta para JSON
+  })
+  .then(data => {
+    // Manipular os dados retornados
+    console.log("Dados do repositório:", data);
+  })
+  .catch(error => {
+    // Lidar com erros
+    console.error("Erro ao acessar a API do GitHub:", error);
+  });
