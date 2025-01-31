@@ -11,12 +11,12 @@ let repoInfo;   // [ {'name', 'description', 'url', 'openGraphImageUrl', 'starga
 
 document.addEventListener('DOMContentLoaded', async function () {
     colorInfo = await fetchDataOrFallbackData(
-        './data/github_color_data.json',
-        './data/backup/github_color_data.json'
+        '../data/github_color_data.json',
+        '../data/backup/github_color_data.json'
     );
     repoInfo = await fetchDataOrFallbackData(
-        './data/repo_data.json',
-        './data/backup/repo_data.json'
+        '../data/repo_data.json',
+        '../data/backup/repo_data.json'
     );
 
     const tag = document.getElementById('gallery');
@@ -47,7 +47,7 @@ async function buildRepoInfoAndRender(tag) {
 
         // Basically means that the repository doesn't have a custom social preview image, so set the default image
         if (info.openGraphImageUrl.includes('https://opengraph.githubassets.com/')) {
-            info.openGraphImageUrl = './assets/img/github-logo.png';
+            info.openGraphImageUrl = '../assets/utils/img/github-logo.png';
         }
 
         info.mostUsedLanguageName = getMostUsedLanguageName(info.languages);
@@ -93,7 +93,7 @@ function renderRepositoryInfo(tag, repositoryInfo) {
         homepageUrlTag.style.width = "12.5%";
 
         homepageUrlTag.innerHTML = `
-            <img class="card--icons" src="./assets/icons/external_link_2.png" alt="HomePage Link Icon">
+            <img class="card--icons" src="../assets/utils/icons/external_link_2.png" alt="HomePage Link Icon">
         `;
     }
 
@@ -104,7 +104,7 @@ function renderRepositoryInfo(tag, repositoryInfo) {
 
         <div class="card__title__container">
             <a class="card__title__container__info" href="${repositoryInfo.url}" target="_blank">
-                <img class="card--icons" src="./assets/icons/external_link_1.png" alt="GitHub Link Icon">
+                <img class="card--icons" src="../assets/utils/icons/external_link_1.png" alt="GitHub Link Icon">
                 <span>${formatRepoName(repositoryInfo.name)}</span>
             </a>
             ${homepageUrlTag.outerHTML}
@@ -174,15 +174,15 @@ function buildRepoExtraInfoDiv(stargazers, forksCount, watchers, languageName, l
 
         <div class="gallery__container__projects__card__info__stats">
         <div class="gallery__container__projects__card__info__stats__item item--star">
-            <img class="gallery__container__projects__card__info__stats__item__icon" src="./assets/icons/star.png" alt="Stars Icon">
+            <img class="gallery__container__projects__card__info__stats__item__icon" src="../assets/utils//icons/star.png" alt="Stars Icon">
             <span class="gallery__container__projects__card__info__stats__item__span no-copy">${stargazers}</span>
         </div>
         <div class="gallery__container__projects__card__info__stats__item item--eye">
-            <img class="gallery__container__projects__card__info__stats__item__icon" src="./assets/icons/eye.png" alt="Watchers Icon">
+            <img class="gallery__container__projects__card__info__stats__item__icon" src="../assets/utils//icons/eye.png" alt="Watchers Icon">
             <span class="gallery__container__projects__card__info__stats__item__span no-copy">${watchers}</span>
         </div>
         <div class="gallery__container__projects__card__info__stats__item item--fork">
-            <img class="gallery__container__projects__card__info__stats__item__icon" src="./assets/icons/fork.png" alt="Forks Icon">
+            <img class="gallery__container__projects__card__info__stats__item__icon" src="../assets/utils//icons/fork.png" alt="Forks Icon">
             <span class="gallery__container__projects__card__info__stats__item__span no-copy">${forksCount}</span>
         </div>
         </div>

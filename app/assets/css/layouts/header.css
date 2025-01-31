@@ -1,0 +1,97 @@
+/* +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+*/
+/* | 1. Small Displays | Header Styles (Default)                                                                             |*/
+/* +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+*/
+
+.header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    padding: 8% 0 8% 2%; 
+}
+
+.header__menu {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.header__menu__item {
+    font-family: var(--fonte-secundaria);
+    font-size: 1.0rem;
+    font-weight: 600;
+
+    color: var(--cor-secundaria);
+}
+
+.header__menu__item:hover {
+    color: var(--cor-teciaria);
+    text-decoration: none;
+}
+
+
+/* +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+*/
+/* | 2. Medium Displays | Header Styles                                                                                      |*/
+/* +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+*/
+
+@media (min-width: 576px) and (max-width: 768px) { 
+    .header {
+        padding: 6% 0 6% 4%; 
+    }
+
+    .header__menu {
+        display: flex;
+        flex-direction: row;
+
+        gap: 24px;
+    }
+
+    .header__menu__item {
+        font-size: 1.2rem;
+    }
+}
+
+
+/* +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+*/
+/* | 3. Large Displays | Header Styles                                                                                       |*/
+/* +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+*/
+
+@media (min-width: 768px) and (max-width: 1024px) { 
+    .header {
+        padding: 4% 0 4% 6%; 
+    }
+
+    .header__menu {
+        display: flex;
+        flex-direction: row;
+
+        gap: 36px;
+    }
+
+    .header__menu__item {
+        font-size: 1.4rem;
+    }
+}
+
+
+/* +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+*/
+/* | 4. Extra Large | Header Styles                                                                                          |*/
+/* +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+*/
+
+@media (min-width: 1024px) { 
+    .header {
+        padding: 2% 0 2% 8%; 
+    }
+
+    .header__menu {
+        display: flex;
+        flex-direction: row;
+
+        gap: 48px;
+    }
+
+    .header__menu__item {
+        font-size: 1.6rem;
+    }
+}

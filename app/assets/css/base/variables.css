@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root {
+    /* Primary Theme Colors */
+    --cor-primaria: #211951;
+    --cor-secundaria: #15F5BA;
+    --cor-terciaria: #F0F3FF;
+    --cor-hover: #1a1346;
+    --cor-hover-icon: #d9dbec;
+
+    --color-gold: gold;
+
+    --cor-branco-fumaca: #f5f5f5;
+
+    /* Grayscale */
+    --cor-hover: #1a1346;
+
+    /* Fonts */
+    --fonte-principal: 'Krona One', sans-serif;
+    --fonte-secundaria: 'Montserrat', sans-serif;
+
+    --cor-leitura: #555555;
+
+    --rgb: #ff4545, #00ff99, #006aff, #ff0095, #ff4545;
+    --rgb: #e3342f, #f6993f, #ffed4a, #38c172, #4dc0b5, #3490dc, #6574cd, #9561e2, #f66d9b;
+
+    --angle: 0deg;
+}
+
+
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+
+@keyframes spin{
+    from{
+      --angle: 0deg;
+    }
+    to{
+      --angle: 360deg;
+    }
+}

@@ -1,74 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-:root {
-    --cor-primaria: #211951;
-    --cor-secundaria: #15F5BA;
-    --cor-terciaria: #F0F3FF;
-    --cor-hover: #1a1346;
-    --cor-hover-icon: #d9dbec;
-
-    --cor-leitura: #555555;
-
-    --rgb: #ff4545, #00ff99, #006aff, #ff0095, #ff4545;
-    --rgb: #e3342f, #f6993f, #ffed4a, #38c172, #4dc0b5, #3490dc, #6574cd, #9561e2, #f66d9b;
-
-    --fonte-principal: 'Krona One', sans-serif;
-    --fonte-secundaria: 'Montserrat', sans-serif;
-
-    --angle: 0deg;
-
-}
-
-
-html, body {
-    background-color: var(--cor-primaria);
-}
-
-
-
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 2% 0% 0% 12%;
-}
-
-.header__nav {
-    display: flex;
-    gap: 32px;
-}
-
-.header__nav__item {
-    font-family: var(--fonte-secundaria);
-    font-size: 1.5rem;
-    font-weight: 600;
-
-    color: var(--cor-secundaria);
-
-    text-decoration: none;
-}
-
-.footer {
-    color: var(--cor-primaria);
-    background-color: var(--cor-secundaria);
-    padding: 16px;
-    text-align: center;
-    font-family: var(--fonte-secundaria);
-    font-size: 1rem;
-    font-weight: 500;
-
-    margin-top: auto;
-
-    width: 100%;
-}
-
-
-
-
-
+@import "./base/reset.css";
+@import "./base/variables.css";
+@import "./base/typography.css";
+@import "./base/utilities.css";
 
 
 
@@ -101,14 +34,6 @@ html, body {
     .gallery__container {
         padding: 6% 6%;
     }
-
-    .header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        padding: 6% 0 12% 6%;
-    }
 }
 
 
@@ -120,14 +45,6 @@ html, body {
     .gallery__container {
         padding: 6% 6%;
     }
-
-    .header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        padding: 6% 0 12% 6%;
-    }
 }
 
 @media (max-width: 512px) {
@@ -137,25 +54,6 @@ html, body {
 
     .gallery__container {
         padding: 0 6% 12% 6%;
-    }
-
-    .header {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-
-        padding: 6% 0 12% 6%;
-    }
-
-    .header__nav {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .footer {
-        padding: 8%;
-        font-size: 0.8rem;
     }
 }
 
@@ -455,21 +353,3 @@ html, body {
     width: 92.5%;
     line-height: 16px;
 }
-
-
-
-
-
-
-
-
-
-
-/* Other Styles */
-.no-copy {
-    user-select: none; 
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none; 
-}
-

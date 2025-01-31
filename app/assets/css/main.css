@@ -1,0 +1,18 @@
+@import "./base/reset.css";
+@import "./base/variables.css";
+@import "./base/typography.css";
+@import "./base/utilities.css";
+
+@import './layouts/footer.css';
+@import './layouts/header.css';
+
+html, body {
+    display: flex;
+    flex-direction: column;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: var(--cor-primaria);
+    color: var(--cor-terciaria);
+}
