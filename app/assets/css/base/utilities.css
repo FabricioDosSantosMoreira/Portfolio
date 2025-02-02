@@ -1,11 +1,49 @@
-/* No Copy */
-.no-copy {
+.prevent-copy {
     user-select: none; 
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none; 
 }
 
+.permit-copy {
+    user-select: auto; 
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto; 
+}
+
 .text-contrast {
-    color: var(--cor-secundaria)
+    color: var(--cor-secundaria);
+}
+
+.font-italic {
+    font-style: italic;
+}
+
+.small-bar {
+    width: 0.5%;
+    height: 1.2px;
+
+    background-color: var(--primary-color);
+}
+
+.small-dot {
+    border: 3.0px solid var(--primary-color);
+    border-radius: 50%;
+
+    background-color: var(--primary-color);
+}
+
+.small-bar:nth-of-type(2) { 
+    animation: fadeInOut 3s infinite ease-in-out;
+}
+
+.small-bar:nth-of-type(3) { 
+    animation: fadeInOut 3s infinite ease-in-out;
+    animation-delay: 0.5s;
+}
+
+.small-bar:nth-of-type(4) {  
+    animation: fadeInOut 3s infinite ease-in-out;
+    animation-delay: 1s;
 }

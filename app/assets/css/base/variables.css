@@ -1,48 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+/* Importing Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-
 :root {
-    /* Primary Theme Colors */
-    --cor-primaria: #211951;
-    --cor-secundaria: #15F5BA;
-    --cor-terciaria: #F0F3FF;
-    --cor-hover: #1a1346;
-    --cor-hover-icon: #d9dbec;
+  /* Font Variables */
+  --custom-header-font: 'Workbench',      serif;
+  --custom-title-font:  'Roboto',         serif;
+  --primary-font:       'Funnel Display', serif;
+  --secondary-font:     'Montserrat',     serif;
 
-    --color-gold: gold;
+  /* Color Variables */
+  --primary-color:    #15F5BA;
+  --secondary-color:  #F0F3FF;
+  --primary-color-hover: #11CE9C;
+  --secondary-color-hover: #d9dbeb;
 
-    --cor-branco-fumaca: #f5f5f5;
+  --gold-color: #ffd900;
+  --black-color: #353535;
+  --dark-gray-color: #4b4b4b;
+  --light-gray-color: #B6B6B6;
 
-    /* Grayscale */
-    --cor-hover: #1a1346;
+  --backgroud-opacity-color-rgba: rgba(0, 0, 0, 0.4);
 
-    /* Fonts */
-    --fonte-principal: 'Krona One', sans-serif;
-    --fonte-secundaria: 'Montserrat', sans-serif;
-
-    --cor-leitura: #555555;
-
-    --rgb: #ff4545, #00ff99, #006aff, #ff0095, #ff4545;
-    --rgb: #e3342f, #f6993f, #ffed4a, #38c172, #4dc0b5, #3490dc, #6574cd, #9561e2, #f66d9b;
-
-    --angle: 0deg;
+  /* Other Variables */
+  --angle: 0deg;
 }
-
 
 
 @property --angle{
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
 
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }  /* Some */
+  50% { opacity: 1; }       /* Aparece */
+}
+
 @keyframes spin{
-    from{
-      --angle: 0deg;
-    }
+  from{
+    --angle: 0deg;
+  }
     to{
-      --angle: 360deg;
-    }
+    --angle: 360deg;
+  }
 }

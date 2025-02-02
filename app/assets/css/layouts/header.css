@@ -7,29 +7,59 @@
     align-items: flex-start;
     justify-content: space-between;
 
-    padding: 8% 0 8% 2%; 
+    width: 100%;
+    height: 8vh;
+    
+    background-color: var(--backgroud-opacity-color-rgba);
+}
+
+.header__name {
+    margin-left: 4%;
+
+    font-family: var(--custom-header-font);
+    font-weight: 800;
+    font-size: 2rem;
+
+    color: var(--secondary-color);
 }
 
 .header__menu {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 
-    gap: 12px;
+    margin-right: 4%;
+    gap: 24px;
 }
 
 .header__menu__item {
-    font-family: var(--fonte-secundaria);
-    font-size: 1.0rem;
+    position: relative;
+
+    font-family: var(--primary-font);
+    font-size: 1.6rem;
     font-weight: 600;
 
-    color: var(--cor-secundaria);
+    color: var(--secondary-color);
+}
+
+.header__menu__item.active::after {
+    content: '';
+    position: absolute;
+
+    left: 0; 
+    bottom: -4px; 
+    
+    height: 2px;
+    width: 36px;
+
+    background: var(--primary-color); 
+    border-radius: 2px;
+    animation: fadeInOut 5s infinite ease-in-out;
 }
 
 .header__menu__item:hover {
-    color: var(--cor-teciaria);
+    color: var(--primary-color);
     text-decoration: none;
 }
-
 
 /* +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+*/
 /* | 2. Medium Displays | Header Styles                                                                                      |*/
@@ -81,17 +111,46 @@
 
 @media (min-width: 1024px) { 
     .header {
-        padding: 2% 0 2% 8%; 
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        width: 100%;
+        padding: 24px 0;
+    }
+
+    .header__name {
+        margin-left: 4%;
+    
+        font-weight: 400;
+        font-size: 2rem;
     }
 
     .header__menu {
         display: flex;
         flex-direction: row;
-
-        gap: 48px;
+    
+        margin-right: 4%;
+        gap: 24px;
     }
 
     .header__menu__item {
         font-size: 1.6rem;
+        font-weight: 600;
+    }
+
+    .header__menu__item.active::after {
+        content: '';
+        position: absolute;
+    
+        left: 0; 
+        bottom: -4px; 
+        
+        height: 2px;
+        width: 36px;
+    
+        background: var(--primary-color); 
+        border-radius: 2px;
+        animation: fadeInOut 5s infinite ease-in-out;
     }
 }

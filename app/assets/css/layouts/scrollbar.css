@@ -1,0 +1,19 @@
+* {
+    scrollbar-width: thin; 
+    scrollbar-color: var(--primary-color) var(--secondary-color); 
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary-color);
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border: 1.5px solid #ffffff;
+    border-radius: 36px;
+}
