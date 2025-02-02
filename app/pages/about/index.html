@@ -3,17 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content=
+        "Portfólio, Portfolio, Santa Catarina, SC, Currículo, Projetos, Sobre, 
+        HTML, HTML5, CSS, JavaScript, JS, Git, GitHub, Software Development, Web Development">
     <meta name="description" content="Portfólio de Fabrício dos Santos Moreira">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/pages/about.css">
-    <title>Portfólio | Sobre Mim</title>
+    
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <script src="../../assets/js/modules/UI/ui.js"></script>
+	<script src="../../assets/js/main.js"></script>
+    
+    <title>Portfólio | Sobre</title>
 </head>
-<body>
+
+<body class="prevent-copy">
+    <!-- Header -->
     <header class="header">
-        <nav class="header__menu">
-            <a class="header__menu__item" href="../index.html">Home</a>
-            <a class="header__menu__item" href="about.html">Sobre Mim</a>
-            <a class="header__menu__item" href="projects.html">Projetos</a>
+        <span class="header__name">Fabrício dos S. Moreira</span>
+        <nav class="header__menu" id="header-nav">
+            <a class="header__menu__item" id="header-home" href="../../">Home</a>
+            <a class="header__menu__item" id="header-about" href="./">Sobre</a>
+            <a class="header__menu__item" id="header-curriculum" href="../curriculum/">Currículo</a>
+            <a class="header__menu__item" id="header-projects" href="../projects/">Projetos</a>
         </nav>
     </header>
 
@@ -28,7 +40,7 @@
             </p>
         </section>
 
-        <img class="apresentacao__imagem" src="../assets/utils/img/foto-perfil.jpg" alt="Foto do perfil do GitHub">
+        <img class="apresentacao__imagem" src="../../assets/utils/img/foto-perfil.jpg" alt="Foto do perfil do GitHub">
     </main>
     
     <footer class="footer">
