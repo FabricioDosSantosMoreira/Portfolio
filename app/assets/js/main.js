@@ -11,16 +11,20 @@ let repoInfo;   // [ {'name', 'description', 'url', 'openGraphImageUrl', 'starga
 
 document.addEventListener('DOMContentLoaded', async function () {
     colorInfo = await fetchDataOrFallbackData(
-        '../data/github_color_data.json',
-        '../data/backup/github_color_data.json'
+        '../../data/github_color_data.json',
+        '../../data/backup/github_color_data.json'
     );
     repoInfo = await fetchDataOrFallbackData(
-        '../data/repo_data.json',
-        '../data/backup/repo_data.json'
+        '../../data/repo_data.json',
+        '../../data/backup/repo_data.json'
     );
 
-    const tag = document.getElementById('gallery');
-    buildRepoInfoAndRender(tag);
+    let currentPage = window.location.pathname.split('/')[2];
+    if (currentPage === 'projects') {
+        const tag = document.getElementById('gallery');
+        buildRepoInfoAndRender(tag);
+    }
+
     }
 );
 
@@ -47,7 +51,7 @@ async function buildRepoInfoAndRender(tag) {
 
         // Basically means that the repository doesn't have a custom social preview image, so set the default image
         if (info.openGraphImageUrl.includes('https://opengraph.githubassets.com/')) {
-            info.openGraphImageUrl = '../assets/utils/img/github-logo.png';
+            info.openGraphImageUrl = '../../assets/utils/img/github-logo.png';
         }
 
         info.mostUsedLanguageName = getMostUsedLanguageName(info.languages);
@@ -93,7 +97,7 @@ function renderRepositoryInfo(tag, repositoryInfo) {
         homepageUrlTag.style.width = "12.5%";
 
         homepageUrlTag.innerHTML = `
-            <img class="card--icons" src="../assets/utils/icons/external_link_2.png" alt="HomePage Link Icon">
+            <img class="card--icons" src="../../assets/utils/icons/external_link_2.png" alt="HomePage Link Icon">
         `;
     }
 
@@ -104,14 +108,16 @@ function renderRepositoryInfo(tag, repositoryInfo) {
 
         <div class="card__title__container">
             <a class="card__title__container__info" href="${repositoryInfo.url}" target="_blank">
-                <img class="card--icons" src="../assets/utils/icons/external_link_1.png" alt="GitHub Link Icon">
+                <img src="../../assets/utils/icons/external_link_1.png" alt="GitHub Link Icon">
                 <span>${formatRepoName(repositoryInfo.name)}</span>
             </a>
             ${homepageUrlTag.outerHTML}
         </div>
 
-        
-        <p class="card__description no-copy">${repositoryInfo.description || "Sem descrição"}</p>
+        <div class="card__description">
+            <p>${repositoryInfo.description || "Sem descrição"}</p>
+        </div>
+       
         <a href="${repositoryInfo.url}"></a>
         ${statsDiv.outerHTML}
     `;
@@ -169,21 +175,21 @@ function buildRepoExtraInfoDiv(stargazers, forksCount, watchers, languageName, l
     statsDiv.innerHTML = `
         <div class="gallery__container__projects__card__info__language">
             <span class="colored-dot" style="background-color: ${languageColor}"></span>
-            <span class="gallery__container__projects__card__info__language__span no-copy">${languageName}</span>
+            <span class="gallery__container__projects__card__info__language__span">${languageName}</span>
         </div>
 
         <div class="gallery__container__projects__card__info__stats">
         <div class="gallery__container__projects__card__info__stats__item item--star">
-            <img class="gallery__container__projects__card__info__stats__item__icon" src="../assets/utils//icons/star.png" alt="Stars Icon">
-            <span class="gallery__container__projects__card__info__stats__item__span no-copy">${stargazers}</span>
+            <img class="gallery__container__projects__card__info__stats__item__icon" src="../../assets/utils//icons/star.png" alt="Stars Icon">
+            <span class="gallery__container__projects__card__info__stats__item__span">${stargazers}</span>
         </div>
         <div class="gallery__container__projects__card__info__stats__item item--eye">
-            <img class="gallery__container__projects__card__info__stats__item__icon" src="../assets/utils//icons/eye.png" alt="Watchers Icon">
-            <span class="gallery__container__projects__card__info__stats__item__span no-copy">${watchers}</span>
+            <img class="gallery__container__projects__card__info__stats__item__icon" src="../../assets/utils//icons/eye.png" alt="Watchers Icon">
+            <span class="gallery__container__projects__card__info__stats__item__span">${watchers}</span>
         </div>
         <div class="gallery__container__projects__card__info__stats__item item--fork">
-            <img class="gallery__container__projects__card__info__stats__item__icon" src="../assets/utils//icons/fork.png" alt="Forks Icon">
-            <span class="gallery__container__projects__card__info__stats__item__span no-copy">${forksCount}</span>
+            <img class="gallery__container__projects__card__info__stats__item__icon" src="../../assets/utils//icons/fork.png" alt="Forks Icon">
+            <span class="gallery__container__projects__card__info__stats__item__span">${forksCount}</span>
         </div>
         </div>
     `;
@@ -294,26 +300,3 @@ function formatRepoName(string) {
 
     return newString;
 };
-
-
-
-
-// URL do endpoint da API do GitHub
-const url = "https://api.github.com/repos/FabricioDosSantosMoreira/react-web-calculator";
-
-// Fazer o request para a API
-fetch(url)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`Erro: ${response.status}`); // Verifica se o request foi bem-sucedido
-    }
-    return response.json(); // Converte a resposta para JSON
-  })
-  .then(data => {
-    // Manipular os dados retornados
-    console.log("Dados do repositório:", data);
-  })
-  .catch(error => {
-    // Lidar com erros
-    console.error("Erro ao acessar a API do GitHub:", error);
-  });
