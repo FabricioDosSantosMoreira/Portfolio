@@ -4,39 +4,38 @@
 
 .header {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
 
-    width: 100%;
-    padding: 24px 0;
+    padding: 8% 4%;
+    gap: 36px;
     
     background-color: var(--backgroud-opacity-color-rgba);
 }
 
-.header__name {
-    margin-left: 4%;
-
+.header-name {
     font-family: var(--custom-header-font);
-    font-weight: 800;
-    font-size: 2rem;
-
+    font-size: 1.4rem;
+    font-weight: 200;
+    
     color: var(--secondary-color);
 }
 
 .header__menu {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
 
-    margin-right: 4%;
-    gap: 24px;
+    gap: 12px;
 }
 
 .header__menu-item {
     position: relative;
 
     font-family: var(--primary-font);
-    font-size: 1.6rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 200;
 
     color: var(--secondary-color);
 }
@@ -56,10 +55,11 @@
     animation: fadeInOut 5s infinite ease-in-out;
 }
 
-.header__menu__item:hover {
+.header__menu-item:hover {
     color: var(--primary-color);
     text-decoration: none;
 }
+
 
 /* +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+*/
 /* | 2. Medium Displays | Header Styles                                                                                      |*/
@@ -67,18 +67,34 @@
 
 @media (min-width: 576px) and (max-width: 768px) { 
     .header {
-        padding: 24px 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 6% 4%;
+    }
+
+    .header-name {
+        width: 30%;
+
+        font-size: 1.6rem;
+        font-weight: 350;
     }
 
     .header__menu {
         display: flex;
+        flex-wrap: nowrap;
         flex-direction: row;
+        justify-content: flex-end;
 
-        gap: 24px;
+        width: 70%;
+        gap: 16px;
     }
 
     .header__menu-item {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
+        font-weight: 350;
     }
 }
 
@@ -89,18 +105,34 @@
 
 @media (min-width: 768px) and (max-width: 1024px) { 
     .header {
-        padding: 24px 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 2% 4%;
+    }
+
+    .header-name {
+        width: 30%;
+
+        font-size: 1.8rem;
+        font-weight: 450;
     }
 
     .header__menu {
         display: flex;
+        flex-wrap: nowrap;
         flex-direction: row;
+        justify-content: flex-end;
 
-        gap: 36px;
+        width: 70%;
+        gap: 20px;
     }
 
     .header__menu-item {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
+        font-weight: 450;
     }
 }
 
@@ -112,45 +144,29 @@
 @media (min-width: 1024px) { 
     .header {
         display: flex;
+        flex-direction: row;
         align-items: flex-start;
         justify-content: space-between;
 
-        width: 100%;
-        padding: 24px 0;
+        padding: 2% 4%;
     }
 
-    .header__name {
-        margin-left: 4%;
-    
-        font-weight: 400;
-        font-size: 2rem;
+    .header-name {
+        font-size: 2.0rem;
+        font-weight: 550;
     }
 
     .header__menu {
         display: flex;
+        flex-wrap: nowrap;
         flex-direction: row;
-    
-        margin-right: 4%;
+        justify-content: flex-end;
+
         gap: 24px;
     }
 
     .header__menu-item {
-        font-size: 1.6rem;
-        font-weight: 600;
-    }
-
-    .header__menu-item.active::after {
-        content: '';
-        position: absolute;
-    
-        left: 0; 
-        bottom: -4px; 
-        
-        height: 2px;
-        width: 36px;
-    
-        background: var(--primary-color); 
-        border-radius: 2px;
-        animation: fadeInOut 5s infinite ease-in-out;
+        font-size: 1.8rem;
+        font-weight: 550;
     }
 }

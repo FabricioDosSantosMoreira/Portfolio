@@ -30,7 +30,7 @@
         flex-direction: column;
         justify-content: flex-start;
 
-        width: 60%;
+        width: 54%;
     }
 
     .introduction__content__portrait {
@@ -63,7 +63,9 @@
     }
 
     .introduction__content__profile-description {
+        line-height: 140%;
         margin-top: 2.5%;
+        text-align: justify;
 
         font-family: var(--secondary-font);
         font-size: 1.4rem;
@@ -73,7 +75,7 @@
     }
 
     .introduction__content__profile-networks {
-        margin-top: 12.5%;
+        margin-top: 5%;
         display: flex;
 
         gap: 24px;
@@ -139,7 +141,7 @@
         animation: spin 5s linear infinite;
     }
 
-    .introduction__content__portrait-bottom-right-border {
+    .introduction__content-portrait-bottom-right-border {
         position: absolute;
 
         width: 100%;

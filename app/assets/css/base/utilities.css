@@ -16,6 +16,10 @@
     color: var(--cor-secundaria);
 }
 
+.text-justify {
+    text-align: justify;
+}
+
 .font-italic {
     font-style: italic;
 }

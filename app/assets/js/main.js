@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     let currentPage = window.location.pathname.split('/')[2];
     if (currentPage === 'projects') {
-        const tag = document.getElementById('gallery');
+        const tag = document.getElementById('projects');
         buildRepoInfoAndRender(tag);
     }
 
