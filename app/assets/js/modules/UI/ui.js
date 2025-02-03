@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Activate a small line under the current page header item name
     // I know this is kinda messy, but works for now.
-    const menuItems = document.querySelectorAll(".header__menu__item");
+    const menuItems = document.querySelectorAll(".header__menu-item");
 
     let currentPage = window.location.pathname.split('/')[length - 1];
     if (currentPage === undefined) {

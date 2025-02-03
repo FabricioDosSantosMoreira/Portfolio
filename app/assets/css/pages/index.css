@@ -2,149 +2,159 @@
 /* | 1. Small Displays | 'index.html' Styles (Default)                                                                       |*/
 /* +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+*/
 
-.introduction__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin: 6% 4% 6% 4%;
-    min-height: 60vh;
-}
-
-.introduction__content__profile {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    width: 65%;
-}
 
 
-.introduction__content__portrait {
-    position: relative; 
-
-    width: 20%;
-}
 
 
-.introduction__content__profile__info {
-    display: flex;
-    flex-direction: column;
 
-    gap: 12px;
-}
 
-.introduction__content__profile__info-title {
-    line-height: 180%;
 
-    font-family: var(--primary-font);
-    font-size: 2.0rem;
-    font-weight: 600;
 
-    color: var(--secondary-color);
 
-    strong {
-        color: var(--primary-color);
+
+/* +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+*/
+/* | 4. Extra Large | 'index.html Styles                                                                                     |*/
+/* +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+*/
+@media (min-width: 1024px) { 
+    .introduction__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        margin: 6% 4% 6% 4%;
+        min-height: 60vh;
     }
-}
 
-.introduction__content__profile__info-description {
-    font-family: var(--secondary-font);
-    font-size: 1.4rem;
-    font-weight: 400;
+    .introduction__content__profile {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
 
-    color: var(--secondary-color);
-}
+        width: 60%;
+    }
 
-.introduction__content__profile-networks {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-}
+    .introduction__content__portrait {
+        position: relative; 
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-.introduction__content__profile__networks__title {
-    font-family: var(--fonte-secundaria);
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: var(--cor-branco-fumaca);
-
-    margin: 0 0 12px 0;
-}
-
-.introduction__content__profile__networks__buttons {
-    display: flex;
-    gap: 24px;
-}
-
-.network-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 64px;
-    height: 64px;
-
-    background: linear-gradient(135deg, #FFFFFF, #dadada, #c4c4c4);
-    border-radius: 15%; 
-
-    box-shadow: 6px 6px 4px rgba(183, 2, 255, 0.5);
-
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.network-button:hover {
-    background: var(--primary-color);
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.10);
-    filter: brightness(1.2);
-}
-
-.network-button img {
-    width: 36px;
-    height: 36px;
-    object-fit: contain;
-}
+        margin: 2.5%;
+        height: 100%;
+        width: 20%;
+    }
 
 
-.introduction__content__portrait__image {
-    margin: 5%;
+    .introduction__content__profile-title {
+        margin-top: 2.5%;
 
-    img {
+        line-height: 180%;
+
+        font-family: var(--primary-font);
+        font-size: 2.0rem;
+        font-weight: 600;
+
+        color: var(--secondary-color);
+
+        strong {
+            color: var(--primary-color);
+        }
+    }
+
+    .introduction__content__profile-description {
+        margin-top: 2.5%;
+
+        font-family: var(--secondary-font);
+        font-size: 1.4rem;
+        font-weight: 400;
+
+        color: var(--secondary-color);
+    }
+
+    .introduction__content__profile-networks {
+        margin-top: 12.5%;
+        display: flex;
+
+        gap: 24px;
+
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 64px;
+            height: 64px;
+
+            background: linear-gradient(135deg, #FFFFFF, #dadada, #c4c4c4);
+            border-radius: 15%; 
+
+            box-shadow: 6px 6px 4px rgba(183, 2, 255, 0.5);
+
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        a:hover {
+            background: var(--primary-color);
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.10);
+            filter: brightness(1.2);
+        }
+
+        img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+    }
+
+
+
+
+
+
+    .introduction__content__portrait-image {
         width: 100%;
         height: 100%;
     }
-}
 
-.introduction__content__portrait__top__left__border {
-    position: absolute;
 
-    width: 90%;
-    height: 90%;
+
+
+    .introduction__content-portrait-top-left-border {
+        position: absolute;
+
+        width: 100%;
+        height: 100%;
+
+        margin-right: 12.5%;
+        margin-bottom: 12.5%;
+
+        border: 2.5px solid;
+
+        z-index: -1;
+
+        border-image-slice: 1;
+
+        border-image-source: conic-gradient(from var(--angle), transparent 25%, var(--gold-color));
+        animation: spin 5s linear infinite;
+    }
+
+    .introduction__content__portrait-bottom-right-border {
+        position: absolute;
+
+        width: 100%;
+        height: 100%;
+
+        margin-left: 12.5%;
+        margin-top: 12.5%;
+        
+        border: 2.5px solid;
+
+        z-index: -1;
+
+        border-image-slice: 1;
     
-    border: 2.5px solid;
-
-    z-index: -1;
-
-    border-image-slice: 1;
-
-    border-image-source: conic-gradient(from var(--angle), transparent 25%, var(--gold-color));
-    animation: spin 5s linear infinite;
-}
-
-.introduction__content__portrait__bottom__right__border {
-    position: absolute;
-
-    width: 90%;
-    height: 90%;
-
-    margin-left: 10%;
-    margin-top: 10%;
-    
-    border: 2.5px solid;
-
-    z-index: -1;
-
-    border-image-slice: 1;
-  
-    animation: spin 5s linear infinite; 
-    border-image-source: conic-gradient(from var(--angle), transparent 25%, var(--gold-color));
+        animation: spin 5s linear infinite; 
+        border-image-source: conic-gradient(from var(--angle), transparent 25%, var(--gold-color));
+    }
 }
