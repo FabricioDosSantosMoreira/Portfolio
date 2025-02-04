@@ -412,7 +412,7 @@
   "description": "My Personal Portfolio ⭐",
   "url": "https://github.com/FabricioDosSantosMoreira/Portfolio",
   "homepageUrl": "https://portfolio-fabricio-dos-santos-moreira.vercel.app",
-  "openGraphImageUrl": "https://opengraph.githubassets.com/e9b38c43cf6a9f27f4e4b75103a4d56ec825cfd1ddc3669edad87a3d0e732f68/FabricioDosSantosMoreira/Portfolio",
+  "openGraphImageUrl": "https://opengraph.githubassets.com/9d864a9dc07803838445c1b7e072298af38cceb92269c06d7a2745904d0ee964/FabricioDosSantosMoreira/Portfolio",
   "stargazers": {
     "totalCount": 1
   },
@@ -428,13 +428,13 @@
         "node": {
           "name": "HTML"
         },
-        "size": 48259
+        "size": 46220
       },
       {
         "node": {
           "name": "CSS"
         },
-        "size": 31586
+        "size": 35409
       },
       {
         "node": {
