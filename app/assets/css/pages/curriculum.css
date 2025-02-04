@@ -22,7 +22,7 @@
     color: var(--secondary-color);
     h1 {
         font-family: var(--custom-title-font);
-        font-size: 0.8rem;
+        font-size: 1.2rem;
         font-weight: 600;
     }
 }
@@ -41,9 +41,9 @@
     grid-template-areas:
         "profile"   
         "degrees" 
+        "courses"
         "skills"
-        "languages"
-        "courses";
+        "languages";
 }
 
 .curriculum__grid-item {
