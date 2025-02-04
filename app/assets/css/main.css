@@ -34,7 +34,7 @@ body::before {
 
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: left bottom;
+    background-position: left top;
     background-image: url('../utils/img/backgroud.png');
 
     z-index: -1; 
