@@ -26,8 +26,6 @@ body::before {
     content: '';
 
     position: fixed;
-    bottom: 0;
-    left: 0;
 
     min-width: 100%;
     min-height: 100%;
@@ -44,8 +42,6 @@ body::after {
     content: '';
 
     position: fixed;
-    bottom: 0;
-    left: 0;
 
     min-width: 100%;
     min-height: 100%;
