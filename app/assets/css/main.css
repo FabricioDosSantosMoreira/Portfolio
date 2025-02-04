@@ -26,7 +26,7 @@ body::before {
     content: '';
 
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
 
     min-width: 100%;
@@ -34,7 +34,7 @@ body::before {
 
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: left top;
+    background-position: bottom left;
     background-image: url('../utils/img/backgroud.png');
 
     z-index: -1; 
@@ -44,7 +44,7 @@ body::after {
     content: '';
 
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
 
     min-width: 100%;
