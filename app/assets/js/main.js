@@ -1,12 +1,44 @@
 /**
- * @fileoverview AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ * @fileoverview 'main.js' is responsible for loading each project card inside the projects page
  * @author Fabricio dos Santos Moreira <dev.fabriciodossantosmoreira@gmail.com>
  * @version 1.0.0
 */
 
+
 // Global Variables
-let colorInfo;  // { 'languageName': { 'color', 'url' } }
-let repoInfo;   // [ {'name', 'description', 'url', 'openGraphImageUrl', 'stargazers': { 'totalCount' }, 'forks': { 'totalCount' }, 'watchers': { 'totalCount' }, 'languages': { 'edges': [ {'node': {'name'}, 'size'} ] } } ]
+
+// NOTE: Variable Structure for 'colorInfo'
+// { 'languageName': { 
+//         'color', 
+//         'url' 
+//     } 
+// }
+let colorInfo;  
+
+// NOTE: Variable Structure for 'repoInfo'
+// [ { 'name', 
+//     'description', 
+//     'url', 
+//     'openGraphImageUrl', 
+//     'stargazers': { 
+//         'totalCount' 
+//     }, 
+//     'forks': {  
+//         'totalCount' 
+//     }, 
+//     'watchers': { 
+//          'totalCount' 
+//     }, 
+//     'languages': { 
+//         'edges': [ { 
+//             'node': {
+//                 'name'
+//             }, 
+//         'size'
+//         }] 
+//     } 
+// } ]
+let repoInfo;  
 
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -29,6 +61,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 );
 
 
+// Either fetch from 'path' or fetch from 'fallbackPath'
 async function fetchDataOrFallbackData(path, fallbackPath) {
     try {
         const response = await fetch(path);
@@ -49,7 +82,8 @@ async function buildRepoInfoAndRender(tag) {
  
     for (let info of repoInfo) {
 
-        // Basically means that the repository doesn't have a custom social preview image, so set the default image
+        // Basically means that the repository doesn't have a custom social preview image, 
+        // so set the default image
         if (info.openGraphImageUrl.includes('https://opengraph.githubassets.com/')) {
             info.openGraphImageUrl = '../../assets/utils/img/github-logo.png';
         }

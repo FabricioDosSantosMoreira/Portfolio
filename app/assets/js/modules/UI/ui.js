@@ -1,6 +1,15 @@
+/**
+ * @fileoverview 'ui.js' is responsible for changing styles in a page
+ * @author Fabricio dos Santos Moreira <dev.fabriciodossantosmoreira@gmail.com>
+ * @version 1.0.0
+*/
+
+
 document.addEventListener("DOMContentLoaded", function () {
-    // Activate a small line under the current page header item name
-    // I know this is kinda messy, but works for now.
+    
+    // Activate a line under the current header item
+    // NOTE: I know this is kinda messy, but works for now
+    // NOTE: I had to do this because of folder's structure
     const menuItems = document.querySelectorAll(".header__menu-item");
 
     let currentPage = window.location.pathname.split('/')[length - 1];
