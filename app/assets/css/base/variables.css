@@ -29,6 +29,7 @@
 }
 
 
+/* Properties */
 @property --angle{
   syntax: "<angle>";
   initial-value: 0deg;
@@ -36,6 +37,7 @@
 }
 
 
+/* Key Frames */
 @keyframes fadeInOut {
   0%, 100% { opacity: 0; }  /* Some */
   50% { opacity: 1; }       /* Aparece */

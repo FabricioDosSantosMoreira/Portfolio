@@ -12,10 +12,6 @@
     -ms-user-select: auto; 
 }
 
-.text-contrast {
-    color: var(--cor-secundaria);
-}
-
 .text-justify {
     text-align: justify;
 }
@@ -25,14 +21,14 @@
 }
 
 .small-bar {
-    width: 0.5%;
-    height: 1.2px;
+    width: 12px;
+    height: 1px;
 
     background-color: var(--primary-color);
 }
 
 .small-dot {
-    border: 3.0px solid var(--primary-color);
+    border: 4.0px solid var(--primary-color);
     border-radius: 50%;
 
     background-color: var(--primary-color);

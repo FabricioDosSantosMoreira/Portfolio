@@ -48,7 +48,7 @@
     bottom: -4px; 
     
     height: 2px;
-    width: 36px;
+    width: 100%;
 
     background: var(--primary-color); 
     border-radius: 2px;
