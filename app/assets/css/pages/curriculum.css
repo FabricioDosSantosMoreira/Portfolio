@@ -7,7 +7,7 @@
     align-items: center;
     flex-direction: column;
 
-    margin: 6% 4% 0 4%;
+    margin: 8% 4% 0% 4%;
     padding: 2% 2% 8% 2%;
 
     background-color: var(--backgroud-opacity-color-rgba);
@@ -195,6 +195,7 @@
 
 @media (min-width: 576px) and (max-width: 768px) { 
     .curriculum__container {
+        margin: 6% 4% 0% 4%;
         padding: 2% 2% 6% 2%;
     }
 
@@ -235,6 +236,7 @@
 
 @media (min-width: 768px) and (max-width: 1024px) { 
     .curriculum__container {
+        margin: 4% 2% 0% 2%;
         padding: 2% 2% 4% 2%;
     }
 
@@ -275,7 +277,8 @@
 
 @media (min-width: 1024px) { 
     .curriculum__container {
-        padding: 2% 2% 4% 2%;
+        margin: 4% 2% 0% 2%;
+        padding: 2% 2% 2% 2%;
     }
 
     .curriculum-title {
