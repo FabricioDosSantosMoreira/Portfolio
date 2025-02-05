@@ -35,9 +35,9 @@ body::before {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom left;
-    /* background-image: url('../utils/img/backgroud.png'); */
+    background-image: url('../utils/img/backgroud.png');
 
-    background-color: white;
+    /* background-color: white; */
     
     z-index: -1; 
 }   
