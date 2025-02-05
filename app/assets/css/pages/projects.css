@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: flex-start;
 
-    margin: 12% 10% 12% 10%;
+    margin: 10% 8% 10% 8%;
 }
 
 .gallery__projects {
@@ -283,7 +283,7 @@
 
 @media (min-width: 576px) and (max-width: 768px) { 
     .gallery__container {
-        margin: 10% 8% 10% 8%;
+        margin: 8% 6% 8% 6%;
     }
 
     .gallery__projects {
@@ -336,7 +336,7 @@
 
 @media (min-width: 768px) and (max-width: 1024px) { 
     .gallery__container {
-        margin: 8% 6% 8% 6%;
+        margin: 6% 4% 6% 4%;
     }
 
     .gallery__projects {
@@ -389,7 +389,7 @@
 
 @media (min-width: 1024px) {
     .gallery__container {
-        margin: 6% 4% 6% 4%;
+        margin: 4% 2% 4% 2%;
     }
 
     .gallery__projects {
@@ -398,7 +398,7 @@
         
         gap: 96px;
 
-        grid-template-columns: repeat(auto-fit, minmax(284px, 384px));
+        grid-template-columns: repeat(auto-fit, minmax(384px, 484px));
     }
 
     .gallery__card-info__language {
