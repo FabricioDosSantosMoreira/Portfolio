@@ -43,6 +43,15 @@
   50% { opacity: 1; }       /* Aparece */
 }
 
+@keyframes tremble {
+  0% {
+      transform: rotate(-2.5deg);
+  }
+  100% {
+      transform: rotate(2.5deg);
+  }
+}
+
 @keyframes spin{
   from{
     --angle: 0deg;

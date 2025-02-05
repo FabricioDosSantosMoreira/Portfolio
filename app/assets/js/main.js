@@ -100,11 +100,11 @@ function renderRepositoryInfo(tag, repositoryInfo) {
 
     // Build a Container Div
     const containerDiv = document.createElement('div');
-    containerDiv.classList.add('gallery__container__projects__container');
+    containerDiv.classList.add('gallery__project-card');
 
 
     // Build the Language Colors Div with Styles
-    const colorsDiv = buildColorDiv(repositoryInfo.languages);
+    const colorsDiv = buildColorBar(repositoryInfo.languages);
 
 
     // Build the Card Div with Styles
@@ -124,14 +124,14 @@ function renderRepositoryInfo(tag, repositoryInfo) {
     homepageUrlTag.style.width = "0";
 
     if (repositoryInfo.homepageUrl != "") {
-        homepageUrlTag.classList.add('card__title__container__homepage');
+        homepageUrlTag.classList.add('card__title__homepage');
 
         homepageUrlTag.href = repositoryInfo.homepageUrl;
         homepageUrlTag.target = "_blank";
         homepageUrlTag.style.width = "12.5%";
 
         homepageUrlTag.innerHTML = `
-            <img class="card--icons" src="../../assets/utils/icons/external_link_2.png" alt="HomePage Link Icon">
+            <img src="../../assets/utils/icons/external_link_2.png" alt="HomePage Link Icon">
         `;
     }
 
@@ -140,8 +140,8 @@ function renderRepositoryInfo(tag, repositoryInfo) {
         <img class="card__image" src="${repositoryInfo.openGraphImageUrl}" alt="Repository Preview Image"></img>
         ${colorsDiv.outerHTML}
 
-        <div class="card__title__container">
-            <a class="card__title__container__info" href="${repositoryInfo.url}" target="_blank">
+        <div class="card__title">
+            <a class="card__title__info" href="${repositoryInfo.url}" target="_blank">
                 <img src="../../assets/utils/icons/external_link_1.png" alt="GitHub Link Icon">
                 <span>${formatRepoName(repositoryInfo.name)}</span>
             </a>
@@ -179,8 +179,8 @@ function buildBorderDiv(languages) {
     const leftBorderDiv = document.createElement('div');
     const rightBorderDiv = document.createElement('div');
 
-    leftBorderDiv.classList.add('gallery__container__projects__container__bottom__left__border');
-    rightBorderDiv.classList.add('gallery__container__projects__container__top__right__border');
+    leftBorderDiv.classList.add('gallery__border--bottom-left');
+    rightBorderDiv.classList.add('gallery__border--top-right');
     
     var colorsList = [];
     for (let languageName in LanguagesNameAndPercentage) {
@@ -204,39 +204,39 @@ function buildRepoExtraInfoDiv(stargazers, forksCount, watchers, languageName, l
 
     // Build the Stats Div with Styles
     const statsDiv = document.createElement('div');
-    statsDiv.classList.add('gallery__container__projects__card__info');
+    statsDiv.classList.add('gallery__card-info');
 
     statsDiv.innerHTML = `
-        <div class="gallery__container__projects__card__info__language">
-            <span class="colored-dot" style="background-color: ${languageColor}"></span>
-            <span class="gallery__container__projects__card__info__language__span">${languageName}</span>
+        <div class="gallery__card-info__language">
+            <div class="gallery__card--colored-dot" style="background-color: ${languageColor}"></div>
+            <span>${languageName}</span>
         </div>
 
-        <div class="gallery__container__projects__card__info__stats">
-        <div class="gallery__container__projects__card__info__stats__item item--star">
-            <img class="gallery__container__projects__card__info__stats__item__icon" src="../../assets/utils//icons/star.png" alt="Stars Icon">
-            <span class="gallery__container__projects__card__info__stats__item__span">${stargazers}</span>
-        </div>
-        <div class="gallery__container__projects__card__info__stats__item item--eye">
-            <img class="gallery__container__projects__card__info__stats__item__icon" src="../../assets/utils//icons/eye.png" alt="Watchers Icon">
-            <span class="gallery__container__projects__card__info__stats__item__span">${watchers}</span>
-        </div>
-        <div class="gallery__container__projects__card__info__stats__item item--fork">
-            <img class="gallery__container__projects__card__info__stats__item__icon" src="../../assets/utils//icons/fork.png" alt="Forks Icon">
-            <span class="gallery__container__projects__card__info__stats__item__span">${forksCount}</span>
-        </div>
+        <div class="gallery__card-info__stats">
+            <div class="gallery__card-info__stats-item gallery__card-info__stats-item--star">
+                <img src="../../assets/utils//icons/star.png" alt="Stars Icon">
+                <span>${stargazers}</span>
+            </div>
+            <div class="gallery__card-info__stats-item gallery__card-info__stats-item--eye">
+                <img src="../../assets/utils//icons/eye.png" alt="Watchers Icon">
+                <span>${watchers}</span>
+            </div>
+            <div class="gallery__card-info__stats-item gallery__card-info__stats-item--fork">
+                <img src="../../assets/utils//icons/fork.png" alt="Forks Icon">
+                <span>${forksCount}</span>
+            </div>
         </div>
     `;
 
     return statsDiv;
 }
 
-function buildColorDiv(languages) {
+function buildColorBar(languages) {
     let LanguagesNameAndPercentage = getUsedLanguagesNameAndPercentage(languages);
 
     // Build the Language Colors Div with Styles
     const colorDiv = document.createElement('div');
-    colorDiv.classList.add('gallery__container__projects__card__colored__div');
+    colorDiv.classList.add('gallery__card--colored-bar');
 
     for (let languageName in LanguagesNameAndPercentage) {
         let languageColor = getLanguageColor(languageName);
