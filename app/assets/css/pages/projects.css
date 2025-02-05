@@ -7,8 +7,7 @@
     align-items: center;
     justify-content: flex-start;
 
-    margin: 12% 6% 12% 6%;
-    padding: 2% 2% 2% 2%;
+    margin: 12% 8% 12% 8%;
 }
 
 .gallery__projects {
@@ -310,7 +309,6 @@
         justify-content: flex-start;
 
         margin: 6% 4% 6% 4%;
-        padding: 2% 2% 2% 2%;
     }
 
     .gallery__projects {
