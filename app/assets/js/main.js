@@ -148,7 +148,7 @@ function renderRepositoryInfo(tag, repositoryInfo) {
             ${homepageUrlTag.outerHTML}
         </div>
 
-        <div class="card__description text-justify">
+        <div class="card__description">
             <p>${repositoryInfo.description || "Sem descrição"}</p>
         </div>
        
