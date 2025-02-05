@@ -98,12 +98,15 @@
 
 .gallery__card-info__language {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 
+    max-width: 60%;
+    
     position: absolute;
     top: 0;
     
     padding-left: 10px;
+    word-break: break-all;
 
     span {
         padding-left: 6px;
@@ -125,16 +128,15 @@
     right: 0;
 }
 
-
 .gallery__card-info__stats-item {
     display: flex;
     align-items: center;
 
-    padding: 2px 10px ;
+    padding: 2px 8px ;
 
     img {
-        width: 16px;
-        height: 16px;
+        width: 12px;
+        height: 12px;
     }
 
     span {
