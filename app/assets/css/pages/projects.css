@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: flex-start;
 
-    margin: 6% 4% 6% 4%;
+    margin: 12% 10% 12% 10%;
 }
 
 .gallery__projects {
@@ -29,6 +29,7 @@
     position: relative; 
 
     width: 100%;
+    height: 100%;
 }
 
 .gallery__border--top-right {
@@ -282,7 +283,7 @@
 
 @media (min-width: 576px) and (max-width: 768px) { 
     .gallery__container {
-        margin: 6% 4% 6% 4%;
+        margin: 10% 8% 10% 8%;
     }
 
     .gallery__projects {
@@ -335,7 +336,7 @@
 
 @media (min-width: 768px) and (max-width: 1024px) { 
     .gallery__container {
-        margin: 6% 4% 6% 4%;
+        margin: 8% 6% 8% 6%;
     }
 
     .gallery__projects {
